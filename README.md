@@ -2,15 +2,15 @@
 Group Project
 Team Name: Savage
 
-Members List of team members, first & last name.
-Karen Vohra
-Sam Berger
-Max Hayne
-Hunter Haller
-Krishna Adeittwar
-Kevin Kirk 
+Members List of team members, first & last name & git username.
+Krishna Adettiwar (kri111)
+Sam Berger (MugBergerFries)
+Hunter Haller (huha3347)
+Max Hayne (mhayne)
+Kevin Kirk (buxwuu)
+Karan Vohra (KaranVohra64)
 
-Description description of the project:
+Description of the project:
 A text based adventure game that allows you to log in when you want to play and remembers your score and username.
 
 “It’s easy to dismiss text adventures as the relics of a bygone age.” -Bob Bates
@@ -43,9 +43,9 @@ Development Method:
 We will follow the agile method because with our busy schedules, it would be best.  This way we can continually check our code to make sure it works and do it in little steps instead of just banking that it will all work in the end.
 
 Collaboration Tool:
-Group text
+Group MMS text.
 
 
 Proposed Architecture Propose:
-C++ for the backend code, sql for the database, and likely a command line interface for the front end
+C++ for the backend code, SQL for the database, and likely a command line interface for the front end.
 
