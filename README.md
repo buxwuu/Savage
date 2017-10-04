@@ -5,7 +5,7 @@ Team Name: Savage
 Members List of team members, first & last name & git username.
 Krishna Adettiwar (kri111)
 Sam Berger (MugBergerFries)
-Hunter Haller (huha3347)
+Hunter Haller (huha3374)
 Max Hayne (mhayne)
 Kevin Kirk (buxwuu)
 Karan Vohra (KaranVohra64)
