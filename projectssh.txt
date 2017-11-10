@@ -1,1 +1,4 @@
-ssh -i ~/.ssh/projectkey.pem ubuntu@ec2-18-216-26-74.us-east-2.compute.amazonaws.com
+LOG IN TO SERVER: ssh -i ~/.ssh/ProjectKey.pem ubuntu@ec2-18-216-26-74.us-east-2.compute.amazonaws.com
+COPY A FILE TO THE SERVER: ssh -i ~/.ssh/ProjectKey.pem /<source path> ubuntu@ec2-18-216-26-74.us-east-2.compute.amazonaws.com:/<destination path>
+EXAMPLE: ssh -i ~/.ssh/ProjectKey.pem index.html ubuntu@ec2-18-216-26-74.us-east-2.compute.amazonaws.com:/var/www/html
+Once logged into the server, you can use cd /var/www/html to get to the web folder
