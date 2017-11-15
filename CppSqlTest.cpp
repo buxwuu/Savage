@@ -28,7 +28,7 @@ int main(int argc, char const *argv[])
 	sql::PreparedStatement *pstmt;
 
 	driver = sql::mysql::get_driver_instance();
-	con = driver->connect("localhost", "root", "storylover");
+	con = driver->connect("localhost", "root", "toor");
 	con->setSchema("prasanna");
 
 	pstmt = con->prepareStatement("SELECT gender FROM player_info WHERE gender = 'M'");
