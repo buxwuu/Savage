@@ -10,9 +10,9 @@ create table if not exists player_info (
 );
 
 create table if not exists inventory (
-	player_ID char(20) not null,
-	blaster bool not null,
-	lightsaber bool not null,
-	grappling_hook bool not null,
+	player_ID char(20) not null default 0,
+	blaster bool not null default 0,
+	lightsaber bool not null default 0,
+	grappling_hook bool not null default 0,
 	primary key (player_ID)
 );
