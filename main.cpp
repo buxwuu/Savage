@@ -6,10 +6,8 @@ g++ -o test -I/usr/include -I/usr/include/cppconn -Wl,-Bdynamic main.cpp -lmysql
 /*NOTES TO KEVIN:
 	LONG STRINGS CAN GO ON MULTIPLE LINES USING A BACKSLASH (SEE START() FOR EXAMPLE)
 	NO NEED FOR BOTH <<ENDL AND \N, THEY BOTH CREATE A NEW LINE
-	MAYBE JUST COUT STRINGS INSIDE OF EACH FUNCTION INSTEAD OF CALLING STRINGUPDATE() AND USING GLOBAL VARIABLES?
+	I REMOVED STRINGUPDATE(), JUST PRINT STRAIGHT TO COUT
 		SEE START() FOR EXAMPLE
-	FOR 'PRESS ENTER TO CONTINUE', YOU CAN USE system("pause"), WHICH PRINTS THE STRING BY DEFAULT
-	BREAK THE LONG COUTS INTO MANAGEABLE BITES DILIMITED BY system("pause") TO NOT FLOOD THE CONSOLE
 */
 
 /* Standard C++ includes */
@@ -38,7 +36,6 @@ using namespace sql::mysql;
 int login();
 int createUser();
 void youdie();
-void stringupdate();
 void start();
 void Tatooine();
 void Lukeshome();
@@ -137,7 +134,6 @@ void start(){
     cout << "1. Play" <<endl;
     cout << "2. Exit" <<endl;
     cin >> input;
-
     switch (input){
 		case 1:
 		    cout<<"Let the game begin"<<endl<<endl;
@@ -152,31 +148,24 @@ jokes.  Even the dude I saw bathing in the Boulder Creek River got to put a joke
 keep you waiting anymore, here is 'The Empire Strikes Back' starring Same Berger as Han Solo, Kevin \
 Kirk as Darth Vader, Hunter Haller as Chewbacca, Max Hayne as Luke Skywalker and Krishna Adettiwar as \
 The Emperor."<<endl<<endl;
-			pause();
+			system("read -p 'Press Enter to continue...' var");
 		    Tatooine();
     }
 }
 
 void Tatooine(){
 
-	cout << "You are now playing as a Rebel Soldier on Tatooine, your current mission is to meet up with Luke Skywalker." << endl;
-	cout << "\n" << endl;
+	system("clear");
+	cout << "You are now playing as a Rebel Soldier on Tatooine, your current mission is to meet up with Luke Skywalker." << endl<<endl;
 	cout << "1. Go to Luke's destroyed home" << endl;
-	cout << "2. Go explore that cave" << endl;
-	cout << "\n" << endl;
+	cout << "2. Go explore that cave" << endl<<endl;
 	cin >> input;
 	switch (input) {
-
 	    case 1:
-	    Lukeshome();
-	    break;
-
+	    	Lukeshome();
 	    case 2:
-	    randomcave();
-	    break;
-
+	    	randomcave();
 	}
-
 }
 
 void Lukeshome(){
@@ -187,75 +176,39 @@ void Lukeshome(){
 	cout << "1. Yes" << endl;
 	cout << "2. No" << endl;
 	cin >> input;
-
-	system("read -p 'Press Enter to continue...' var");
-
 	switch (input)
 	{
-
-	case 1:
-	    talktoluke();
-	    break;
-	case 2:
-	    youdie();
-	    break;
+		case 1:
+		    talktoluke();
+		case 2:
+		    youdie();
 	}
-
-
 }
 
 void talktoluke(){
 
-	cout << "Sweet, I was jumped by some smugglers while bull's-eyeing womp rats in my t-16, they took my light saber. . .can you retrieve it for me? " << endl;
-	cout << "\n"  << endl;
-	system("read -p 'Press Enter to continue...' var");
 	system("clear");
+	cout << "Sweet, I was jumped by some smugglers while bull's-eyeing womp rats in my t-16, they took my light saber. . .can you retrieve it for me? " << endl<<endl;
 	cout << "1. Sure (Isn't this a sign that Luke is a serial killer?)" << endl;
-	cout << "2. No (I am not helping out this psychopath)"  << endl;
+	cout << "2. No (I am not helping out this psychopath)"  << endl<<endl;
 	cin >> input;
-	cout << "\n" <<endl;
-	system("read -p 'Press Enter to continue...' var");
 
-	switch (input)
-	{
-
-	case 1:
-	    randomcave();
-	case 2:
-	    youdie();
-
+	switch (input){
+		case 1:
+		    randomcave();
+		case 2:
+		    youdie();
 	}
-
-
-
 }
 
 void randomcave(){
 
 	system("clear");
 	cout << " Smuggler - What are you doing here?" << endl;
-
 }
 
 void youdie(){
 
-	cout << "Luke - Well then I don't need you any more! *shoots you with a blaster pistol*" << endl;
-
-	system("read -p 'Press Enter to continue...' var");
-
-	exit(0);
-}
-
-void stringupdate() {
-
-    cout << "\n " << update << endl;
-    cout << "\n ";
-
-    if (update2 != "") {
-        cout << "\n " << update2 << endl;
-        cout << "\n ";
-    }
-
-    return;
-
+	cout << "Luke - Well then I don't need you any more! *shoots you with a blaster pistol*\nYou have lost" << endl;
+	system("read -p 'Press Enter to close the game...' var");
 }
