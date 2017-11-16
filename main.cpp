@@ -17,6 +17,7 @@ g++ -o test -I/usr/include -I/usr/include/cppconn -Wl,-Bdynamic main.cpp -lmysql
 #include <iostream>
 #include <string>
 #include <time.h>
+#include <conio.h>
 /*
   Include directly the different
   headers from cppconn/ and mysql_driver.h + mysql_util.h
@@ -139,7 +140,7 @@ void start(){
 
     switch (input){
 		case 1:
-		    cout<<"Let the game begin"<<endl;
+		    cout<<"Let the game begin"<<endl<<endl;
 		    cout<<"A long time ago, before Tupac but not really before Tupac.  Luke Skywalker has returned to his \
 home planet of Tatooine in order to. . .you know what I don't remember, it's been too long since I've \
 seen the Star Wars movies.  I think he needs to find a way to defeat the Empire. . .which brings up a \
@@ -150,8 +151,9 @@ as the game goes on.  We are all pressed for time in our other classes anyway, w
 jokes.  Even the dude I saw bathing in the Boulder Creek River got to put a joke in here.  Anyway, not to \
 keep you waiting anymore, here is 'The Empire Strikes Back' starring Same Berger as Han Solo, Kevin \
 Kirk as Darth Vader, Hunter Haller as Chewbacca, Max Hayne as Luke Skywalker and Krishna Adettiwar as \
-The Emperor."<<endl;
-		    system("pause");
+The Emperor."<<endl<<endl;
+			cout<<"Press Enter to continue..."<<endl;
+		    getch();
 		    Tatooine();
     }
 }
