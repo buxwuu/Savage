@@ -1,3 +1,8 @@
+/*To compile and run this code on the EC2 machine, use these commands:
+g++ -o test -I/usr/include -I/usr/include/cppconn -Wl,-Bdynamic main.cpp -lmysqlcppconn
+./test
+*/
+
 /* Standard C++ includes */
 #include <stdlib.h>
 #include <iostream>
