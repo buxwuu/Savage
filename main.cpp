@@ -42,7 +42,7 @@ sql::PreparedStatement *pstmt;
 int main(void)
 {
 	driver = sql::mysql::get_driver_instance();
-	con=driver->connect("localhost", "root", "storylover");//Will not work on EC2 unless password = toor
+	con=driver->connect("localhost", "root", "toor");//Will not work on EC2 unless password = toor
 	con->setSchema("techtest");
 	userid = login();
 	cout<<"Login test complete, breaking"<<endl;
