@@ -88,7 +88,7 @@ int login(){
 int createUser(){
 	string username;
 	string password;
-	int test;
+	string test;
 	string choice="0";
 	while (choice!="2"){
 		cout<<"Enter your desired username: ";
