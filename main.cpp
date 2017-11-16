@@ -88,6 +88,7 @@ int login(){
 int createUser(){
 	string username;
 	string password;
+	string test;
 	string choice="0";
 	while (choice!="2"){
 		cout<<"Enter your desired username: ";
@@ -105,6 +106,13 @@ int createUser(){
 			delete pstmt;
 			pstmt=con->prepareStatement("INSERT INTO player_info (username, password) VALUES ('"+username+"', '"+password+"')");
 			pstmt->executeUpdate();
+			delete pstmt;
+			delete res;
+			pstmt=con->prepareStatement("SELECT username FROM player_info");
+			res=pstmt->executeQuery();
+			while (res->next()){
+				cout<<"res: "<<res->getString("username");
+			}
 			delete pstmt;
 			delete res;
 			pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"'");
