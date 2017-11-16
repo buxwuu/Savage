@@ -17,7 +17,6 @@ g++ -o test -I/usr/include -I/usr/include/cppconn -Wl,-Bdynamic main.cpp -lmysql
 #include <iostream>
 #include <string>
 #include <time.h>
-#include <conio.h>
 /*
   Include directly the different
   headers from cppconn/ and mysql_driver.h + mysql_util.h
@@ -153,7 +152,7 @@ keep you waiting anymore, here is 'The Empire Strikes Back' starring Same Berger
 Kirk as Darth Vader, Hunter Haller as Chewbacca, Max Hayne as Luke Skywalker and Krishna Adettiwar as \
 The Emperor."<<endl<<endl;
 			cout<<"Press Enter to continue..."<<endl;
-		    getch();
+		    getchar();
 		    Tatooine();
     }
 }
