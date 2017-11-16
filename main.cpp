@@ -110,7 +110,7 @@ int createUser(){
 			delete res;
 			pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"'");
 			res=pstmt->executeQuery();
-			test=res->getInt("player_ID")
+			test=res->getInt("player_ID");
 			cout<<"getInt inbound: "<<test<<endl;
 			return res->getInt("player_ID");
 		}
