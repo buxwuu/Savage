@@ -1,4 +1,5 @@
 /*To compile and run this code on the EC2 machine, use these commands:
+cd /var/www/html/Savage
 g++ -o test -I/usr/include -I/usr/include/cppconn -Wl,-Bdynamic main.cpp -lmysqlcppconn
 ./test
 */
