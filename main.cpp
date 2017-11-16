@@ -55,21 +55,45 @@ int login(){
 	bool done = 0;
 	cout<<"Would you like to create an account or log in?\n1. Create account\n2. Log in"<<endl;
 	getline(cin, choice);
-	swtich (choice){
-		case 1: 
-			userid=createUser();
-			done=1;
-			break;
-		case 2:
-			break;
-	}
 	while (!done){
+		switch (choice){
+			case 1: 
+				userid=createUser();
+				return userid;
+			case 2:
+				break;
+		}
 		cout<<"Please enter your username"<<endl;
 		getline(cin, username);
 		cout<<"Please enter your password"<<endl;
 		getline(cin, password);
-			pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"' AND password='", password, "'");
+		pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"' AND password='", password, "'");
+		res=pstmt->executeQuery();
+		if (!res->first()){
+			cout<<"User not found. Enter again or create account?\n1. Create account\n2. Enter again"<<endl;
+			getline(cin, choice);
+			delete pstmt;
+			delete res;
+			goto fin;
+		}
+		userid=atoi(res->getString("player_ID"));
+		delete pstmt;
+		delete res;
+		return userid;
+		fin:;
 	}
+}
+
+int createUser(){
+	string username;
+	string passowrd;
+	cout<<"Enter your desired username: ";
+	getline(cin, username);
+	cout<<"Enter your desired password: ";
+	getline(cin, password);
+	pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"' AND password='", password, "'");
+	res=pstmt->executeQuery();
+	if(res->first())
 }
 
 void start(){

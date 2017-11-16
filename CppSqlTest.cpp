@@ -36,9 +36,13 @@ int main(int argc, char const *argv[])
 	con = driver->connect("localhost", "root", "toor");
 	con->setSchema("prasanna");
 
-	string test = "M";
+	string test = "C";
 	pstmt = con->prepareStatement("SELECT gender FROM player_info WHERE gender = '"+test+"'");
 	res = pstmt->executeQuery();
+	if (!res->first()){
+		cout<<"Nope"<<endl;
+		exit(0);
+	}
 	while (res->next()){
 		cout<<res->getString("gender")<<endl;
 	}
