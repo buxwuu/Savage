@@ -55,7 +55,7 @@ int login(){
 	cout<<"Would you like to create an account or log in?\n1. Create account\n2. Log in"<<endl;
 	getline(cin, choice);
 	while (true){
-		if(choice=='1'){
+		if(choice=="1"){
 			userid=createUser();
 			if (userid=-1){
 				break;
@@ -66,7 +66,7 @@ int login(){
 		getline(cin, username);
 		cout<<"Please enter your password"<<endl;
 		getline(cin, password);
-		pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"' AND password='", password, "'");
+		pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"' AND password='"+password+"'");
 		res=pstmt->executeQuery();
 		if (!res->first()){
 			cout<<"User not found. Enter again or create account?\n1. Create account\n2. Enter again"<<endl;
@@ -86,8 +86,8 @@ int login(){
 int createUser(){
 	string username;
 	string password;
-	string choice='0';
-	while (choice!='2'){
+	string choice="0";
+	while (choice!="2"){
 		cout<<"Enter your desired username: ";
 		getline(cin, username);
 		cout<<"Enter your desired password: ";
