@@ -17,6 +17,7 @@ g++ -o test -I/usr/include -I/usr/include/cppconn -Wl,-Bdynamic main.cpp -lmysql
 #include <iostream>
 #include <string>
 #include <time.h>
+#include <unistd.h>
 /*
   Include directly the different
   headers from cppconn/ and mysql_driver.h + mysql_util.h
@@ -151,9 +152,7 @@ jokes.  Even the dude I saw bathing in the Boulder Creek River got to put a joke
 keep you waiting anymore, here is 'The Empire Strikes Back' starring Same Berger as Han Solo, Kevin \
 Kirk as Darth Vader, Hunter Haller as Chewbacca, Max Hayne as Luke Skywalker and Krishna Adettiwar as \
 The Emperor."<<endl<<endl;
-			do {
-    			cout << '\n' << "Press the Enter key to continue.";
-   			} while (cin.get() != '\n');
+			pause();
 		    Tatooine();
     }
 }
