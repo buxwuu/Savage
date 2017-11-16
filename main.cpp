@@ -18,6 +18,7 @@
 #include <cppconn/prepared_statement.h>
 
 using namespace std;
+using namespace sql::mysql;
 
 int login();
 int createUser();
@@ -32,16 +33,17 @@ string update;
 string update2;
 int input;
 int userid;
+sql::Driver *driver;
+sql::Connection *con;
+sql::Statement *stmt;
+sql::ResultSet *res;
+sql::PreparedStatement *pstmt;
 
 int main(void)
 {
-	sql::Driver *driver;
-	sql::Connection *con;
-	sql::Statement *stmt;
-	sql::ResultSet *res;
-	sql::PreparedStatement *pstmt;
 	driver = sql::mysql::get_driver_instance();
 	driver=con->connect("localhost", "root", "storylover");//Will not work on EC2 unless password = toor
+	con->setSchema("techtest");
 	userid = login();
 	start();
 }
@@ -66,7 +68,7 @@ int login(){
 		getline(cin, username);
 		cout<<"Please enter your password"<<endl;
 		getline(cin, password);
-
+			pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"' AND password='", password, "'");
 	}
 }
 
