@@ -5,8 +5,7 @@ use techtest;
 create table if not exists player_info (
 	player_ID int primary key auto_increment,	
 	username char(20) not null,
-	password char(20) not null,
-	primary key (player_ID)
+	password char(20) not null
 );
 
 create table if not exists inventory (
