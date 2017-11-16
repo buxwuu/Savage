@@ -56,13 +56,13 @@ int login(){
 	getline(cin, choice);
 	while (true){
 		switch (choice){
-			case 1: 
+			case '1': 
 				userid=createUser();
 				if (userid=-1){
 					break;
 				}
 				return userid;
-			case 2:
+			case '2':
 				break;
 		}
 		cout<<"Please enter your username"<<endl;
@@ -89,8 +89,8 @@ int login(){
 int createUser(){
 	string username;
 	string passowrd;
-	int choice=0;
-	while (choice!=2){
+	string choice='0';
+	while (choice!='2'){
 		cout<<"Enter your desired username: ";
 		getline(cin, username);
 		cout<<"Enter your desired password: ";
