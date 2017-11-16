@@ -42,7 +42,7 @@ sql::PreparedStatement *pstmt;
 int main(void)
 {
 	driver = sql::mysql::get_driver_instance();
-	driver=con->connect("localhost", "root", "storylover");//Will not work on EC2 unless password = toor
+	con=driver->connect("localhost", "root", "storylover");//Will not work on EC2 unless password = toor
 	con->setSchema("techtest");
 	userid = login();
 	start();
@@ -51,7 +51,7 @@ int main(void)
 int login(){
 	string username;
 	string password;
-	int choice;
+	string choice;
 	cout<<"Would you like to create an account or log in?\n1. Create account\n2. Log in"<<endl;
 	getline(cin, choice);
 	while (true){
