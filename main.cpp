@@ -104,6 +104,7 @@ int createUser(){
 			delete pstmt;
 			pstmt=con->prepareStatement("INSERT INTO player_info (username, password) VALUES ('"+username+"', '"+password+"')");
 			pstmt->executeUpdate();
+			return res->getInt();
 		}
 		delete pstmt;
 		delete res;
