@@ -118,11 +118,7 @@ int createUser(){
 			cout<<"FUCKING USERNAME IS "<<username<<endl;
 			pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"'");
 			res=pstmt->executeQuery();
-			if (!res->next()){
-				cout<<"I must be fucking daft"<<endl;
-			}
-			test=res->getInt("player_ID");
-			cout<<"getInt inbound: "<<test<<endl;
+			res->first();
 			return res->getInt("player_ID");
 		}
 		delete pstmt;
