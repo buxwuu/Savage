@@ -59,8 +59,6 @@ int main(void)
 	con=driver->connect("localhost", "root", "toor");//Will not work on EC2 unless password = toor
 	con->setSchema("techtest");
 	userid = login();
-	cout<<"Login test complete, breaking"<<endl;
-	exit(0);
 	start();
 }
 
@@ -91,6 +89,7 @@ int login(){
 			goto fin;
 		}
 		userid=res->getInt("player_ID");
+		cout<<"Welcome "<<username<<". You are logged in"<<endl;
 		delete pstmt;
 		delete res;
 		return userid;
@@ -123,6 +122,7 @@ int createUser(){
 			pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"'");
 			res=pstmt->executeQuery();
 			res->first();
+			cout<<"Welcome "<<username<<". You are logged in"<<endl;
 			return res->getInt("player_ID");
 		}
 		delete pstmt;
