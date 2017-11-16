@@ -88,7 +88,7 @@ int login(){
 int createUser(){
 	string username;
 	string password;
-	int test;
+	string test;
 	string choice="0";
 	while (choice!="2"){
 		cout<<"Enter your desired username: ";
@@ -110,7 +110,7 @@ int createUser(){
 			delete res;
 			pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"'");
 			res=pstmt->executeQuery();
-			test=res->getInt("player_ID");
+			test=res->getString("player_ID");
 			cout<<"getInt inbound: "<<test<<endl;
 			return res->getInt("player_ID");
 		}
