@@ -59,10 +59,7 @@ int login(){
 	while (true){
 		if(choice=="1"){
 			userid=createUser();
-			if (userid==-1){
-				break;
-			}
-			else{
+			if (userid!=-1){
 				return userid;
 			}
 		}
