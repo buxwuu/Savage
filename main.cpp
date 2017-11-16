@@ -111,7 +111,7 @@ int createUser(){
 			pstmt=con->prepareStatement("SELECT username FROM player_info");
 			res=pstmt->executeQuery();
 		    while (res->next()){
-		    	cout<<"username: "<<res->getString()<<endl;
+		    	cout<<"username: "<<res->getString("username")<<endl;
 		    }
 			delete pstmt;
 			delete res;
