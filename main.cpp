@@ -115,6 +115,7 @@ int createUser(){
 		delete pstmt;
 		delete res;
 	}
+	cout<<"Moving to log-in"<<endl;
 	return -1;
 }
 
