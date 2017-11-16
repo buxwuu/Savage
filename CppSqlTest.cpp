@@ -1,3 +1,8 @@
+/*To compile and run this code on the EC2 machine, use these commands:
+g++ -o test -I/usr/include -I/usr/include/cppconn -Wl,-Bdynamic CppSqlTest.cpp -lmysqlcppconn
+./test
+*/
+
 /* Standard C++ includes */
 #include <stdlib.h>
 #include <iostream>
@@ -31,7 +36,8 @@ int main(int argc, char const *argv[])
 	con = driver->connect("localhost", "root", "toor");
 	con->setSchema("prasanna");
 
-	pstmt = con->prepareStatement("SELECT gender FROM player_info WHERE gender = 'M'");
+	char test = 'M';
+	pstmt = con->prepareStatement("SELECT gender FROM player_info WHERE gender = '", test, "'");
 	res = pstmt->executeQuery();
 	while (res->next()){
 		cout<<res->getString("gender")<<endl;
