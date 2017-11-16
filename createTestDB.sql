@@ -3,7 +3,7 @@ create database techtest;
 use techtest;
 
 create table if not exists player_info (
-	player_ID int(4) not null,	
+	player_ID int primary key auto_increment,	
 	username char(20) not null,
 	password char(20) not null,
 	primary key (player_ID)
