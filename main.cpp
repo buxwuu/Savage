@@ -52,13 +52,15 @@ int login(){
 	string username;
 	string password;
 	int choice;
-	bool done = 0;
 	cout<<"Would you like to create an account or log in?\n1. Create account\n2. Log in"<<endl;
 	getline(cin, choice);
-	while (!done){
+	while (true){
 		switch (choice){
 			case 1: 
 				userid=createUser();
+				if (userid=-1){
+					break;
+				}
 				return userid;
 			case 2:
 				break;
@@ -76,7 +78,7 @@ int login(){
 			delete res;
 			goto fin;
 		}
-		userid=atoi(res->getString("player_ID"));
+		userid=res->getInt("player_ID");
 		delete pstmt;
 		delete res;
 		return userid;
@@ -87,13 +89,22 @@ int login(){
 int createUser(){
 	string username;
 	string passowrd;
-	cout<<"Enter your desired username: ";
-	getline(cin, username);
-	cout<<"Enter your desired password: ";
-	getline(cin, password);
-	pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"' AND password='", password, "'");
-	res=pstmt->executeQuery();
-	if(res->first())
+	int choice=0;
+	while (choice!=2){
+		cout<<"Enter your desired username: ";
+		getline(cin, username);
+		cout<<"Enter your desired password: ";
+		getline(cin, password);
+		pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"'");
+		res=pstmt->executeQuery();
+		if(res->first()){
+			cout<<"ERROR: User already exists. Try again or log in?\n1. Try again\n2. Log in"<<endl;
+			getline(cin, choice);
+		}
+		delete pstmt;
+		delete res;
+	}
+	return -1;
 }
 
 void start(){
