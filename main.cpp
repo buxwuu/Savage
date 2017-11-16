@@ -105,6 +105,8 @@ int createUser(){
 			delete pstmt;
 			pstmt=con->prepareStatement("INSERT INTO player_info (username, password) VALUES ('"+username+"', '"+password+"')");
 			pstmt->executeUpdate();
+			pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"'");
+			res=pstmt->executeQuery();
 			cout<<"getInt inbound"<<endl;
 			return res->getInt("player_ID");
 		}

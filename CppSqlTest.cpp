@@ -39,6 +39,8 @@ int main(int argc, char const *argv[])
 	string test = "C";
 	pstmt = con->prepareStatement("SELECT gender FROM player_info WHERE gender = '"+test+"'");
 	res = pstmt->executeQuery();
+	pstmt=con->prepareStatement("SELECT age FROM player_info WHERE gender = 'M'");
+	res = pstmt->executeQuery();
 	if (!res->first()){
 		cout<<"Nope"<<endl;
 		exit(0);
