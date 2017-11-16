@@ -62,7 +62,9 @@ int login(){
 			if (userid=-1){
 				break;
 			}
-			return userid;
+			else{
+				return userid;
+			}
 		}
 		cout<<"Please enter your username"<<endl;
 		getline(cin, username);
@@ -115,7 +117,6 @@ int createUser(){
 		delete pstmt;
 		delete res;
 	}
-	cout<<"Moving to log-in"<<endl;
 	return -1;
 }
 
