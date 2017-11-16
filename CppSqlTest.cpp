@@ -46,7 +46,7 @@ int main(int argc, char const *argv[])
 		exit(0);
 	}
 	while (res->next()){
-		cout<<res->getString(0)<<endl;
+		cout<<res->getString("age")<<endl;
 	}
 	cout<<"1"<<endl;
 	//delete test;
