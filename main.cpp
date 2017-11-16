@@ -45,6 +45,8 @@ int main(void)
 	con=driver->connect("localhost", "root", "storylover");//Will not work on EC2 unless password = toor
 	con->setSchema("techtest");
 	userid = login();
+	cout<<"Login test complete, breaking"<<endl;
+	exit(0);
 	start();
 }
 
