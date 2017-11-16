@@ -97,7 +97,6 @@ int createUser(){
 		getline(cin, password);
 		pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"'");
 		res=pstmt->executeQuery();
-		cout<<"Res->first test: "<<res->first()<<endl;
 		if(res->first()){
 			cout<<"ERROR: User already exists. Try again or log in?\n1. Try again\n2. Log in"<<endl;
 			getline(cin, choice);
@@ -108,14 +107,6 @@ int createUser(){
 			pstmt->executeUpdate();
 			delete pstmt;
 			delete res;
-			pstmt=con->prepareStatement("SELECT player_ID FROM player_info");
-			res=pstmt->executeQuery();
-		    while (res->next()){
-		    	cout<<"username: "<<res->getInt("player_ID")<<endl;
-		    }
-			delete pstmt;
-			delete res;
-			cout<<"FUCKING USERNAME IS "<<username<<endl;
 			pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"'");
 			res=pstmt->executeQuery();
 			res->first();
