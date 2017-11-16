@@ -145,7 +145,7 @@ Luke and his band of smugglers are trying to overthrow it.  Anyway maybe we got 
 n this one. . .just please do me a favor and lower your expectations, we promise we'll make it up to you \
 as the game goes on.  We are all pressed for time in our other classes anyway, we had to dig hard for \
 jokes.  Even the dude I saw bathing in the Boulder Creek River got to put a joke in here.  Anyway, not to \
-keep you waiting anymore, here is 'The Empire Strikes Back' starring Same Berger as Han Solo, Kevin \
+keep you waiting anymore, here is 'The Empire Strikes Back' starring Sam Berger as Han Solo, Kevin \
 Kirk as Darth Vader, Hunter Haller as Chewbacca, Max Hayne as Luke Skywalker and Krishna Adettiwar as \
 The Emperor."<<endl<<endl;
 			system("read -p 'Press Enter to continue...' var");
@@ -163,8 +163,10 @@ void Tatooine(){
 	switch (input) {
 	    case 1:
 	    	Lukeshome();
+	    	break;
 	    case 2:
 	    	randomcave();
+	    	break;
 	}
 }
 
@@ -180,8 +182,10 @@ void Lukeshome(){
 	{
 		case 1:
 		    talktoluke();
+		    break;
 		case 2:
 		    youdie();
+		    break;
 	}
 }
 
@@ -196,8 +200,10 @@ void talktoluke(){
 	switch (input){
 		case 1:
 		    randomcave();
+		    break;
 		case 2:
 		    youdie();
+		    break;
 	}
 }
 
