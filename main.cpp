@@ -151,8 +151,9 @@ jokes.  Even the dude I saw bathing in the Boulder Creek River got to put a joke
 keep you waiting anymore, here is 'The Empire Strikes Back' starring Same Berger as Han Solo, Kevin \
 Kirk as Darth Vader, Hunter Haller as Chewbacca, Max Hayne as Luke Skywalker and Krishna Adettiwar as \
 The Emperor."<<endl<<endl;
-			cout<<"Press Enter to continue..."<<endl;
-		    getchar();
+			do {
+    			cout << '\n' << "Press the Enter key to continue.";
+   			} while (cin.get() != '\n');
 		    Tatooine();
     }
 }
