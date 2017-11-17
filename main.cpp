@@ -156,7 +156,7 @@ The Emperor."<<endl<<endl;
 
 void Tatooine(){
 
-	system("clear");
+	system("read -p 'Press Enter to continue...' var");
 	cout << "You are now playing as a Rebel Soldier on Tatooine, your current mission is to meet up with Luke Skywalker." << endl<<endl;
 	cout << "1. Go to Luke's destroyed home" << endl;
 	cout << "2. Go explore that cave" << endl<<endl;
@@ -173,7 +173,7 @@ void Tatooine(){
 
 void Lukeshome(){
 
-	system("clear");
+	system("read -p 'Press Enter to continue...' var");
 	cout << "I need your help to load this stuff onto The Millennium Falcon, so we can go and blow up The Death Star" << endl;
 	cout << "However, I lost my light saber and I need help finding it, can you get it for me?" << endl;
 	cout << "1. Yes" << endl;
@@ -192,7 +192,7 @@ void Lukeshome(){
 
 void talktoluke(){
 
-	system("clear");
+	system("read -p 'Press Enter to continue...' var");
 	cout << "Sweet, I was jumped by some smugglers while bull's-eyeing womp rats in my t-16, they took my light saber. . .can you retrieve it for me? " << endl<<endl;
 	cout << "1. Sure (Isn't this a sign that Luke is a serial killer?)" << endl;
 	cout << "2. No (I am not helping out this psychopath)"  << endl<<endl;
@@ -210,7 +210,7 @@ void talktoluke(){
 
 void randomcave(){
 
-	system("clear");
+	system("read -p 'Press Enter to continue...' var");
 	cout << " Smuggler - What are you doing here?" << endl;
 }
 
