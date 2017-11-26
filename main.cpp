@@ -150,7 +150,6 @@ jokes.  Even the dude I saw bathing in the Boulder Creek River got to put a joke
 keep you waiting anymore, here is 'The Empire Strikes Back' starring Sam Berger as Han Solo, Kevin \
 Kirk as Darth Vader, Hunter Haller as Chewbacca, Max Hayne as Luke Skywalker and Krishna Adettiwar as \
 The Emperor."<<endl<<endl;
-			system("read -p 'Press Enter to continue...' var");
 		    Tatooine();
     }
 }
@@ -192,7 +191,6 @@ void Lukeshome(){
 }
 
 void Lukeshome2(){
-    system("read -p 'Press Enter to continue...' var");
     cout << "You - Luke, I got your lightsaber."<<endl;
     cout << " Luke - Good job man!" << endl;
     
