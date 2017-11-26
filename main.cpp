@@ -8,7 +8,7 @@ g++ -o test -I/usr/include -I/usr/include/cppconn -Wl,-Bdynamic main.cpp -lmysql
 	LONG STRINGS CAN GO ON MULTIPLE LINES USING A BACKSLASH (SEE START() FOR EXAMPLE)
 	NO NEED FOR BOTH <<ENDL AND \N, THEY BOTH CREATE A NEW LINE
 	I REMOVED STRINGUPDATE(), JUST PRINT STRAIGHT TO COUT
-		SEE START() FOR EXAMPLE test
+		SEE START() FOR EXAMPLE 
 */
 
 /* Standard C++ includes */
