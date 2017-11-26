@@ -166,15 +166,17 @@ void Tatooine(){
 	    	Lukeshome();
 	    	break;
 	    case 2:
-	    	randomcave();
-	    	break;
+	    cout<<" On your way to the cave you you came across Luke."<<endl;
+            Lukeshome();
+            system("read -p 'Press Enter to continue...' var");
+            break;
 	}
 }
 
 void Lukeshome(){
 
 	system("read -p 'Press Enter to continue...' var");
-	cout << "I need your help to load this stuff onto The Millennium Falcon, so we can go and blow up The Death Star" << endl;
+	cout << "Luke - I need your help to load this stuff onto The Millennium Falcon, so we can go and blow up The Death Star" << endl;
 	cout << "However, I lost my light saber and I need help finding it, can you get it for me?" << endl;
 	cout << "1. Yes" << endl;
 	cout << "2. No" << endl;
