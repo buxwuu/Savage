@@ -38,6 +38,7 @@ int login();
 int createUser();
 void youdie();
 void start();
+void Lukeshome2();
 void Tatooine();
 void Lukeshome();
 void randomcave();
@@ -190,6 +191,13 @@ void Lukeshome(){
 	}
 }
 
+void Lukeshome2(){
+    system("read -p 'Press Enter to continue...' var");
+    cout << "You - Luke, I got your lightsaber."<<endl;
+    cout << " Luke - Good job man!" << endl;
+    
+}
+
 void talktoluke(){
 
 	system("read -p 'Press Enter to continue...' var");
@@ -210,8 +218,34 @@ void talktoluke(){
 
 void randomcave(){
 
-	system("read -p 'Press Enter to continue...' var");
-	cout << " Smuggler - What are you doing here?" << endl;
+    system("read -p 'Press Enter to continue...' var");
+    cout << " Smuggler - What are you doing here?" << endl;
+    cout << " You - I am looking around for something that you may have."<<endl;
+    cout << " Smuggler - What may that be?"<<endl;
+    cout << " You - A lightsaber."<<endl;
+    cout << " Smiggler - I have one of those, but it'll cost you."<<endl;
+    cout << " 1. Continue talking to him." << endl;
+    cout << " 2. Reach for your blaster pistol" <<endl;
+    cin >> input;
+    
+    system("read -p 'Press Enter to continue...' var");
+
+    switch (input)
+    {
+            
+        case 1:
+            cout << "You - How much?"<<endl;
+            cout << "Smuggler - Your life."<<endl;
+            cout<<" You reach for your blaster pistol and a firefight ensues. . .you manage to kill 3 of the 5 smugglers, but the other 2 escape.  However, you did manage to find and secure Luke's lightsaber, but on the flipside you were shot in the arm."<<endl;
+            break;
+        case 2:
+            cout<<"You reach for your blaster pistol and a firefight ensues. . .you manage to kill 3 of the 5 smugglers, but the other 2 escape.  However, you did manage to find and secure Luke's lightsaber."<<endl;
+            break;
+    }
+    system("read -p 'Press Enter to continue...' var");
+
+    Lukeshome2();
+    
 }
 
 void youdie(){
