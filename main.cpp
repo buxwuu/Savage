@@ -159,7 +159,8 @@ void Tatooine(){
 	system("read -p 'Press Enter to continue...' var");
 	cout << "You are now playing as a Rebel Soldier on Tatooine, your current mission is to meet up with Luke Skywalker." << endl<<endl;
 	cout << "1. Go to Luke's destroyed home" << endl;
-	cout << "2. Go explore that cave" << endl<<endl;
+	cout << "2. Go explore that cave"<<endl
+        cout<<"3. Save and quit\n"<<endl;
 	cin >> input;
 	switch (input) {
 	    case 1:
