@@ -43,7 +43,6 @@ void Lukeshome2();
 void Tatooine();
 void Lukeshome();
 void randomcave();
-void talktoluke();
 string update;
 string update2;
 int input;
@@ -141,13 +140,30 @@ void checkProgress(){
     int x;
     res->first();
     x = res->getInt("progress");
+    delete pstmt;
+    delete res;
+    if (x!=0){
+        cout<<"Previous save file found.\n1. Resume from save\n2. Create new game\n"<<endl;
+        cin >> input;
+        if (input==2){
+            pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grappling_hook = 0 WHERE player_ID = "+userid);
+            pstmt->executeUpdate();
+            delete pstmt;
+            cout<<"Previous save wiped successfully\n"<<endl;
+        }
+        else if (input!=1){
+            //Put invalid loop here
+        }
+    }
     switch(x){
-        delete pstmt;
-        delete res;
         case 0:
-            return;
+            start();
         case 1:
             Tatooine();
+        case 2:
+            Lukeshome();
+        case 3:
+            
             
     }
 }
@@ -177,9 +193,10 @@ The Emperor."<<endl<<endl;
 
 void Tatooine(){
 	system("read -p 'Press Enter to continue...' var");
-	cout << "You are now playing as a Rebel Soldier on Tatooine, your current mission is to meet up with Luke Skywalker." << endl<<endl;
-	cout << "1. Go to Luke's destroyed home" << endl;
-	cout << "2. Go explore that cave"<<endl
+	cout<<"You are now playing as a Rebel Soldier on Tatooine, your current mission is to meet up with Luke Skywalker"<<endl;
+        cout<<"You currently have no weapon\n"<<endl;
+	cout<<"1. Go to Luke's destroyed home"<<endl;
+	cout<<"2. Go explore that cave in the mountain over there"<<endl
         cout<<"3. Save and quit\n"<<endl;
 	cin >> input;
 	switch (input) {
@@ -187,35 +204,39 @@ void Tatooine(){
 	    	Lukeshome();
 	    	break;
 	    case 2:
-                cout<<" On your way to the cave you you came across Luke."<<endl;
-                Lukeshome();
+                cout<<"You approach the cave"<<endl;
+                randomcave();
                 system("read -p 'Press Enter to continue...' var");
                 break;
             case 3:
                 pstmt=con->prepareStatement("UPDATE player_info SET progress = 1 WHERE player_ID = "+userid);
                 pstmt->executeUpdate();
                 cout<<"Your progress has been saved, thanks for playing!"<<endl;
-                
 	}
 }
 
 void Lukeshome(){
-
-	system("read -p 'Press Enter to continue...' var");
-	cout << "Luke - I need your help to load this stuff onto The Millennium Falcon, so we can go and blow up The Death Star" << endl;
-	cout << "However, I lost my light saber and I need help finding it, can you get it for me?" << endl;
-	cout << "1. Yes" << endl;
-	cout << "2. No" << endl;
-	cin >> input;
-	switch (input)
-	{
-		case 1:
-		    talktoluke();
-		    break;
-		case 2:
-		    youdie();
-		    break;
-	}
+    system("read -p 'Press Enter to continue...' var");
+    cout << "Luke - I need your help to load this stuff onto The Millennium Falcon, so we can go and blow up The Death Star" << endl;
+    cout << "However, I lost my light saber and I need help finding it, can you get it for me?" << endl;
+    cout << "1. Yes" << endl;
+    cout << "2. No" << endl;
+    cin >> input;
+    switch (input)
+    {
+        case 1:
+            cout<<"Thanks! I was jumped by some smugglers while bulls-eyeing womp-rats in my T-16. I think they are set up in that cove over there"<<endl;
+            cout<<"Here, take my spare blaster, you might need it!"<<endl;
+            pstmt=prepareStatement("UPDATE inventory SET blaster = 1 WHERE player_ID = "+userid);
+            pstmt->executeUpdate();
+            delete pstmt;
+            cout<<"BLASTER ACQUIRED\n"<<endl;
+            randomcave();
+            break;
+        case 2:
+            youdie();
+            break;
+    }
 }
 
 void Lukeshome2(){
@@ -224,34 +245,41 @@ void Lukeshome2(){
     
 }
 
-void talktoluke(){
-
-	system("read -p 'Press Enter to continue...' var");
-	cout << "Sweet, I was jumped by some smugglers while bull's-eyeing womp rats in my t-16, they took my light saber. . .can you retrieve it for me? " << endl<<endl;
-	cout << "1. Sure (Isn't this a sign that Luke is a serial killer?)" << endl;
-	cout << "2. No (I am not helping out this psychopath)"  << endl<<endl;
-	cin >> input;
-
-	switch (input){
-		case 1:
-		    randomcave();
-		    break;
-		case 2:
-		    youdie();
-		    break;
-	}
-}
-
 void randomcave(){
-
     system("read -p 'Press Enter to continue...' var");
-    cout << " Smuggler - What are you doing here?" << endl;
+    cout<<"You enter the cave, and spot 5 smugglers gathered around a campfire"<<endl;
+    cout<<"Unfortunately, they seem to have spotted you too!"<<endl;
+    cout<<"Smuggler - You've messed up, boy! *draws blaster*"<<endl;
+    pstmt=prepareStatement("SELECT blaster FROM inventory WHERE player_ID = "+userid);
+    res=pstmt->executeQuery();
+    res->first();
+    int x;
+    x = res->getInt("blaster");
+    delete res;
+    delete pstmt;
+    switch (x){
+        case 0:
+            cout<<"You reach for your blaster holster, realizing you are still unarmed!"<<endl;
+            cout<<"You dive for the nearest smuggler, but are easily shot down"<<endl;
+            cout<<"YOU HAVE DIED\nGAME OVER"<<endl;
+            pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grappling_hook = 0 WHERE player_ID = "+userid);
+            pstmt->executeUpdate();
+            delete pstmt;
+            return;
+        case 1:
+            cout<<"You reach for your holster and wrap your fingers around Luke's blaster"<<endl;
+            cout<<"A firefight ensues...\nYou manage to kill 3 of the 5 smugglers, but the other 2 escape.  However, you did manage to find and secure Luke's lightsaber"<<endl;
+            cout<<"LIGHTSABER ACQUIRED"<<endl;
+            
+    }
+    /*
     cout << " You - I am looking around for something that you may have."<<endl;
     cout << " Smuggler - What may that be?"<<endl;
     cout << " You - A lightsaber."<<endl;
     cout << " Smiggler - I have one of those, but it'll cost you."<<endl;
     cout << " 1. Continue talking to him." << endl;
     cout << " 2. Reach for your blaster pistol" <<endl;
+     */
     cin >> input;
     
     system("read -p 'Press Enter to continue...' var");
