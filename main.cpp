@@ -36,6 +36,7 @@ using namespace sql::mysql;
 
 int login();
 int createUser();
+void checkProgress();
 void youdie();
 void start();
 void Lukeshome2();
@@ -58,8 +59,11 @@ int main(void)
 	driver = sql::mysql::get_driver_instance();
 	con=driver->connect("localhost", "root", "toor");//Will not work on EC2 unless password = toor
 	con->setSchema("techtest");
-	userid = login();
-	start();
+        while (true){
+            userid = login();
+            checkProgress();
+            start();
+        }
 }
 
 int login(){
@@ -131,8 +135,25 @@ int createUser(){
 	return -1;
 }
 
+void checkProgress(){
+    pstmt=con->prepareStatement("SELECT progress FROM player_info WHERE player_ID = "+userid);
+    res=pstmt->executeQuery();
+    int x;
+    res->first();
+    x = res->getInt("progress");
+    switch(x){
+        delete pstmt;
+        delete res;
+        case 0:
+            return;
+        case 1:
+            Tatooine();
+            
+    }
+}
+
 void start(){
-	cout <<"Welcome to Albuquerque" << endl;
+    cout <<"Welcome to Albuquerque" << endl;
     cout << "1. Play" <<endl;
     cout << "2. Exit" <<endl;
     cin >> input;
@@ -155,7 +176,6 @@ The Emperor."<<endl<<endl;
 }
 
 void Tatooine(){
-
 	system("read -p 'Press Enter to continue...' var");
 	cout << "You are now playing as a Rebel Soldier on Tatooine, your current mission is to meet up with Luke Skywalker." << endl<<endl;
 	cout << "1. Go to Luke's destroyed home" << endl;
@@ -167,10 +187,15 @@ void Tatooine(){
 	    	Lukeshome();
 	    	break;
 	    case 2:
-	    cout<<" On your way to the cave you you came across Luke."<<endl;
-            Lukeshome();
-            system("read -p 'Press Enter to continue...' var");
-            break;
+                cout<<" On your way to the cave you you came across Luke."<<endl;
+                Lukeshome();
+                system("read -p 'Press Enter to continue...' var");
+                break;
+            case 3:
+                pstmt=con->prepareStatement("UPDATE player_info SET progress = 1 WHERE player_ID = "+userid);
+                pstmt->executeUpdate();
+                cout<<"Your progress has been saved, thanks for playing!"<<endl;
+                
 	}
 }
 
