@@ -2,5 +2,5 @@ Over the course of the semester, we have been building a text-based adventure ga
 in this game, three features that we will be testing for Milestone 5 is:
 
 1. Being able to create/login to your personal user account.
-2. Being able to pick up where you left off last time in the game (game saves).
-3. Keeping track of an active user inventory as you progress through the game by using a mySQL database.
+2. Be able to log back in without creating a new account.
+3. Checks to make sure your username is valid.
