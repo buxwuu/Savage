@@ -1,4 +1,6 @@
 Over the course of the semester, we have been building a text-based adventure game. Of the many features we've decided to include \
 in this game, three features that we will be testing for Milestone 5 is:
 
-1. Keeping track of an active user inventory by using a mySQL database.
+1. Being able to create/login to your personal user account.
+2. Being able to pick up where you left off last time in the game (game saves).
+3. Keeping track of an active user inventory as you progress through the game by using a mySQL database.
