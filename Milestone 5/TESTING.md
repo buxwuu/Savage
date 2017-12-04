@@ -25,3 +25,5 @@ Our game is a C++ file that uses mySLQ Connector to read and write data to the m
 in a web browser.) In the first screenshot (located in this directory), the executable recognizes that a username that doesn't exist in the mySQL database and offers to create a new user account or try again. Then we can see that we try a valid username and it searches through the mySQL database and then after it verifies the username exists, it asks for a password and verifies that from the database as well. Once the username and password is accepted (either from entering an existing username and password or creating a new user account with a password), the game begins.
 
 In screenshot 2, we see the script runs an instance where the user wants to check their inventory. Here, the game checks the backend mySQL database under that user account and prints all the contents in the inventory of that speicific user to the terminal output.
+
+In screenshot 3, we see all three features working together. We see a user login, show the inventory is empty, then pick up an item, then we show that the inventory now has the item.
