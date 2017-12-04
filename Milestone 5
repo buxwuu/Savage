@@ -1,6 +1,16 @@
+Team Members:
+  Krishna Adettiwar
+  Sam Berger
+  Hunter Haller
+  Max Hayne
+  Kevin Kirk
+
+TITLE: ALBUQUERQUE
+
 Over the course of the semester, we have been building a text-based adventure game. Of the many features we've decided to include \
 in this game, three features that we will be testing for Milestone 5 is:
 
-1. Being able to create/login to your personal user account.
-2. Be able to log back in without creating a new account.
-3. Checks to make sure your username is valid.
+1. Being able to login to your personal user account and match the password. If password is incorrect, don't login. If username is not found \
+offer the option to create a new username. The usernames and passwords are stored in a mySQL database.
+2. Being able to login and access the game save file and continue progress through the story.
+3. Being able to pick up items through the game and store these items in an inventory database in mySQL, where each user has their own inventory.
