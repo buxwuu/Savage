@@ -14,6 +14,7 @@ VISION STATEMENT FOR TEAM SAVAGE:
   access and log into their game from. Additionally, we hope to learn how to use software methodologies and work as a \
   well-functioning and cohesive team of five.
 
+FEATURES:
 Over the course of the semester, we have been building a text-based adventure game. Of the many features we've decided to \
 include in this game, three features that we will be testing for Milestone 5 is:
 
@@ -24,4 +25,9 @@ username is not found offer the option to create a new username. The usernames a
 their own inventory.
 
 
-EXPLANATIONS
+EXPLANATIONS FOR SCREENSHOTS:
+
+Our game is a C++ file that uses mySLQ Connector to read and write data to the mySQL database that stores all the usernames \
+and passwords, the game save data per user account, and the inventory for each user. For the purpose of Milestone 5, we are \
+running this file in a terminal instead of a web browser (but the actual project will work in a full fledged terminal running \
+in a web browser.)
