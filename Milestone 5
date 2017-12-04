@@ -7,9 +7,10 @@ Team Members:
 
 TITLE: ALBUQUERQUE
 
-Vision Statement for Team Savage: Vision Statement for Savage: Make a fun text-based adventure game that saves your score \
-and progress between sessions to a username, while learning how to work efficiently and cohesively on a team of six through \
-standard software development methodologies and tools like agile and git.
+Vision Statement for Team Savage: Vision Statement for Savage: Make a fun text-based adventure game that saves your progress \
+between sessions to a username, being able to store an in-game inventory using mySQL, and being able to access this game via \
+a website which anyone can access and log into their game from. Additionally, we hope to learn how to use software \
+methodologies and work as a well-functioning and cohesive team of five.
 
 Over the course of the semester, we have been building a text-based adventure game. Of the many features we've decided to \
 include in this game, three features that we will be testing for Milestone 5 is:
