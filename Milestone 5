@@ -1,1 +1,4 @@
+Over the course of the semester, we have been building a text-based adventure game. Of the many features we've decided to include \
+in this game, three features that we will be testing for Milestone 5 is:
 
+1. Keeping track of an active user inventory by using a mySQL database.
