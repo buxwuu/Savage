@@ -1,16 +1,18 @@
-Team Members:
+TEAM MEMBERS:
   Krishna Adettiwar
   Sam Berger
   Hunter Haller
   Max Hayne
   Kevin Kirk
 
-TITLE: ALBUQUERQUE
+TITLE:
+  ALBUQUERQUE
 
-Vision Statement for Team Savage: Vision Statement for Savage: Make a fun text-based adventure game that saves your progress \
-between sessions to a username, being able to store an in-game inventory using mySQL, and being able to access this game via \
-a website which anyone can access and log into their game from. Additionally, we hope to learn how to use software \
-methodologies and work as a well-functioning and cohesive team of five.
+VISION STATEMENT FOR TEAM SAVAGE:
+  Vision Statement for Savage: Make a fun text-based adventure game that saves your progress between sessions to a username, \
+  being able to store an in-game inventory using mySQL, and being able to access this game via a website which anyone can \
+  access and log into their game from. Additionally, we hope to learn how to use software methodologies and work as a \
+  well-functioning and cohesive team of five.
 
 Over the course of the semester, we have been building a text-based adventure game. Of the many features we've decided to \
 include in this game, three features that we will be testing for Milestone 5 is:
@@ -20,3 +22,6 @@ username is not found offer the option to create a new username. The usernames a
 2. Being able to login and access the game save file and continue progress through the story.
 3. Being able to pick up items through the game and store these items in an inventory database in mySQL, where each user has \
 their own inventory.
+
+
+EXPLANATIONS
