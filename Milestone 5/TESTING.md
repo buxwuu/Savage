@@ -30,7 +30,7 @@ EXPLANATIONS FOR SCREENSHOTS:
 Our game is a C++ file that uses mySLQ Connector to read and write data to the mySQL database that stores all the usernames \
 and passwords, the game save data per user account, and the inventory for each user. For the purpose of Milestone 5, we are \
 running this file in a terminal instead of a web browser (but the actual project will work in a full fledged terminal running \
-in a web browser.) In this first screenshot, the executable recognizes that a username that doesn't exist in the mySQL \
+in a web browser.) In the first screenshot (located in this directory), the executable recognizes that a username that doesn't exist in the mySQL \
 database and offers to create a new user account or try again. Then we can see that we try a valid username and it searches \
 through the mySQL database and then after it verifies the username exists, it asks for a password and verifies that from \
 the database as well. Once the username and password is accepted (either from entering an existing username and password or \
