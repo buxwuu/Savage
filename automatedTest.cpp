@@ -21,6 +21,7 @@ Not sure how the pre-loaded cin will handle the "Press enter to continue..." sce
 #include <stdlib.h>
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <time.h>
 #include <unistd.h>
 /*
@@ -50,10 +51,13 @@ void Lukeshome();
 void randomcave();
 void talktoluke();
 void test();
-void gameStart(void);
+void gameStart();
 
 string update;
 string update2;
+string username;
+string password;
+string choice;
 int input;
 int input1;
 int input2;
@@ -73,7 +77,9 @@ int main(void){
   return 0;
 }
 
-int gameStart(void)
+
+
+void gameStart()
 {
 	driver = sql::mysql::get_driver_instance();
 	con=driver->connect("localhost", "root", "toor");//Will not work on EC2 unless password = toor
@@ -83,9 +89,6 @@ int gameStart(void)
 }
 
 int login(){
-	string username;
-	string password;
-	string choice;
 	cout<<"Would you like to create an account or log in?\n1. Create account\n2. Log in"<<endl;
 	getline(cin, choice);
 	while (true){
@@ -118,8 +121,6 @@ int login(){
 }
 
 int createUser(){
-	string username;
-	string password;
 	int test;
 	string choice="0";
 	while (choice!="2"){
