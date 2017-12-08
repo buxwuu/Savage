@@ -294,7 +294,7 @@ void test(){
           cin >> dummy;
           continue;
       }
-      gamestart();
+      gameStart();
   }
   
 }
