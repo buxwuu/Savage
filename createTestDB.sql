@@ -7,13 +7,13 @@ create table if not exists player_info (
 	username char(20) not null,
 	password char(20) not null,
 	progress int not null default 0,
-        luke int not null
+        luke bool not null default 0,
+        obiwan bool not null default 0
 );
 
 create table if not exists inventory (
-	player_ID char(20) not null default 0,
+	player_ID int primary key auto_increment,
 	blaster bool not null default 0,
 	lightsaber bool not null default 0,
-	grappling_hook bool not null default 0,
-	primary key (player_ID)
+	grenade bool not null default 0,
 );
