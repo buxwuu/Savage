@@ -37,9 +37,7 @@ using namespace sql::mysql;
 int login();
 int createUser();
 void checkProgress();
-void youdie();
 void start();
-void Lukeshome2();
 void Tatooine();
 void Lukeshome();
 void randomcave();
@@ -61,7 +59,6 @@ int main(void)
         while (true){
             userid = login();
             checkProgress();
-            start();
         }
 }
 
@@ -158,13 +155,16 @@ void checkProgress(){
     switch(x){
         case 0:
             start();
+            break;
         case 1:
             Tatooine();
+            break;
         case 2:
             Lukeshome();
+            break;
         case 3:
-            
-            
+            randomcave();
+            break;
     }
 }
 
@@ -239,10 +239,45 @@ void Lukeshome(){
     }
 }
 
-void Lukeshome2(){
-    cout << "You - Luke, I got your lightsaber."<<endl;
-    cout << " Luke - Good job man!" << endl;
-    
+void obiwan(){
+    system("read -p 'Press Enter to continue...' var");
+    pstmt=prepareStatement("SELECT blaster FROM inventory WHERE player_ID = "+userid);
+    res=pstmt->executeQuery();
+    res->first();
+    int x;
+    x = res->getInt("blaster");
+    delete res;
+    delete pstmt;
+    cout<<"You arrive at the small hut. Pushing the ragged flap covering the entrance aside, you enter...\n";
+    cout<<"An old man sits at a table in the center of the dwelling\nhe looks up at you as you enter\n";
+    cout<<"Obi-wan - Ah, a visitor! How can I help you?\n";
+    cout<<"You - I've come to help Luke Skywalker, can you assist?\n";
+    if (x==1) cout<<"Obi-wan - He lives in the dome-shaped building nearby\nIf you prove yourself worthy, I can also give you a handy piece of gear\n\n";
+    else cout<<"Obi-wan - If you prove yourself worthy, I can give you a handy piece of gear\n\n";
+    cout<<"1. I'll try your challenge\n";
+    cout<<"2. This isn't worth my time, thanks anyway old man\n";
+    if (x==1) cout<<"3. *Reach for blaster* I think I'll just take it from you, thanks very much\n";
+    else cout<<"3. *LOCKED*\n";
+    cout<<"4. *Save and exit*\n";
+    cin>>input;
+    switch (cin){
+        case 1:
+            break;
+        case 2:
+            cout<<"Obi-wan - May the Force be with you\n\nYou exit the dwelling\n\n";
+            cout<<"1. Go to Luke's home"
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        default:
+            break;
+    }
+    switch (x){
+        case 0:
+            cout
+    }
 }
 
 void randomcave(){
@@ -297,13 +332,4 @@ void randomcave(){
             break;
     }
     system("read -p 'Press Enter to continue...' var");
-
-    Lukeshome2();
-    
-}
-
-void youdie(){
-
-	cout << "Luke - Well then I don't need you any more! *shoots you with a blaster pistol*\nYou have lost" << endl;
-	system("read -p 'Press Enter to close the game...' var");
 }
