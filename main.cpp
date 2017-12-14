@@ -59,6 +59,7 @@ int main(void)
 	con->setSchema("techtest");
         while (true){
             userid = login();
+            cout<<"USERID: "<<userid<<endl;
             pstmt=con->prepareStatement("SELECT progress FROM player_info WHERE player_ID = "+userid);
             res=pstmt->executeQuery();
             res->first();
@@ -134,7 +135,8 @@ int createUser(){
             cout<<"res->first()"<<endl;
 			res->first();
 			cout<<"Welcome "<<username<<". You are logged in"<<endl;
-			return res->getInt("player_ID");
+            test = res->getInt("player_ID");
+			return test;
 		}
 		delete pstmt;
 		delete res;
