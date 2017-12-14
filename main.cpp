@@ -17,6 +17,7 @@ g++ -o test -I/usr/include -I/usr/include/cppconn -Wl,-Bdynamic main.cpp -lmysql
 #include <string>
 #include <time.h>
 #include <unistd.h>
+#include <sstream>
 /*
   Include directly the different
   headers from cppconn/ and mysql_driver.h + mysql_util.h
