@@ -59,7 +59,9 @@ int main(void)
 	con->setSchema("techtest");
         while (true){
             userid = login();
-            cout<<"USERID: "<<userid<<endl;
+            string tester;
+            tester = ("SELECT progress FROM player_info WHERE player_ID = "+userid);
+            cout<<"TESTER: "<<tester<<endl;
             pstmt=con->prepareStatement("SELECT progress FROM player_info WHERE player_ID = "+userid);
             res=pstmt->executeQuery();
             res->first();
