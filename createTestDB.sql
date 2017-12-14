@@ -13,8 +13,8 @@ create table if not exists player_info (
 
 create table if not exists inventory (
 	player_ID int,
-	foreign key (player_ID) references player_info(player_ID),
 	blaster int not null default 0,
 	lightsaber int not null default 0,
 	grenade int not null default 0,
+	foreign key (player_ID) references player_info(player_ID)
 );
