@@ -47,6 +47,7 @@ void randomcave();
 string update;
 string update2;
 string userstr;
+string instr;
 int input;
 int userid;
 sql::Driver *driver;
@@ -74,8 +75,6 @@ int login(){
 	string password;
 	string choice;
 	cout<<"Would you like to create an account or log in?\n1. Create account\n2. Log in"<<endl;
-    fflush(stdin);
-    cin.ignore (); 
 	getline(cin, choice);
 	while (true){
 		if(choice=="1"){
@@ -113,7 +112,6 @@ int createUser(){
 	string choice="0";
 	while (choice!="2"){
 		cout<<"Enter your desired username: ";
-        cin.ignore (); 
 		getline(cin, username);
 		cout<<"Enter your desired password: ";
 		getline(cin, password);
@@ -154,7 +152,8 @@ void checkProgress(){
     delete res;
     if (x!=0){
         cout<<"Previous save file found.\n1. Resume from save\n2. Create new game"<<endl;
-        cin >> input;
+        getline(cin, instr);
+        input=atoi(instr);
         if (input==2){
             pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grappling_hook = 0 WHERE player_ID = "+userstr);
             pstmt->executeUpdate();
@@ -185,7 +184,8 @@ void start(){
     cout <<"Welcome to Albuquerque" << endl;
     cout << "1. Play" <<endl;
     cout << "2. Exit" <<endl;
-    cin >> input;
+    getline(cin,instr);
+    input=atoi(instr);
     switch (input){
         case 1:
 	    cout<<"Let the game begin"<<endl<<endl;
@@ -223,14 +223,14 @@ void Tatooine(){
     delete res;
     delete pstmt;
     here:
-    fflush(stdin);
     cout<<"To the west, you see a dome-like building\nTo the east, you see a mountain region with a small cave entrance built in"<<endl;
     cout<<"To the north, you see a worn-down home structure\n"<<endl;
     if (luke==0)cout<<"1. Go to the dome-like building"<<endl;
     cout<<"2. Go to the cave"<<endl;
     if (grenade==0)cout<<"3. Go to the worn-down home"<<endl;
     cout<<"4. Save and quit"<<endl;
-    cin >> input;
+    getline(cin,instr);
+    input=atoi(instr);
     switch (input) {
         case 1:
             if (luke==1){
@@ -312,15 +312,14 @@ void obiwan(){
     if (x==1) cout<<"3. *Reach for blaster* I think I'll just take it from you, thanks very much\n";
     else cout<<"3. *LOCKED*\n";
     cout<<"4. Save and quit\n";
-    cin>>input;
+    getline(cin,instr);
+    input=atoi(instr);
     switch (input){
         case 1:
             cout<<"Obi-Wan - If you can answer this question correct, I'll give you what you need"<<endl;
             cout<<"Obi-Wan - This should be simple for a rebel soldier like you"<<endl;
             cout<<"Obi-Wan - What was the name of the Star Destroyer that Darth Vader commanded?"<<endl;
-            cin.ignore (); 
             getline(cin, guess);
-            cout<<"You guessed "<<guess<<endl;
             if (guess=="Executor"||guess=="executor"||guess=="EXECUTOR"){
                 cout<<"Obi-Wan - Indeed. It was the most fearsome Star Destroyer I've ever come across"<<endl;
                 cout<<"Obi-Wan - Well, I suppose I owe you this\nHe hands you a small sphere\nGRENADE ACQUIRED"<<endl;
@@ -395,7 +394,8 @@ void randomcave(){
     if (grenade==blaster==1) cout<<"4. Throw the grenade and pull your blaster (100% chance to succeed)"<<endl;
     else cout<<"4. *LOCKED*"<<endl;
     cout<<"5. Save and quit\n"<<endl;
-    cin >> input;
+    getline(cin,instr);
+    input=atoi(instr);
     switch (input){
         case 1:
             cout<<"You rolled a "<<chance<<" out of 100"<<endl;
