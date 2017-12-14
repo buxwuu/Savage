@@ -54,8 +54,7 @@ sql::Statement *stmt;
 sql::ResultSet *res;
 sql::PreparedStatement *pstmt;
 
-int main(void)
-{
+int main(void){
 	driver = sql::mysql::get_driver_instance();
 	con=driver->connect("localhost", "root", "toor");//Will not work on EC2 unless password = toor
 	con->setSchema("techtest");
@@ -123,14 +122,11 @@ int createUser(){
 			pstmt=con->prepareStatement("INSERT INTO player_info (username, password) VALUES ('"+username+"', '"+password+"')");
 			pstmt->executeUpdate();
 			delete pstmt;
-            cout<<"player_info"<<endl;
             pstmt=con->prepareStatement("INSERT INTO inventory (blaster, lightsaber, grenade) VALUES ('0', '0', '0')");
             pstmt->executeUpdate();
             delete pstmt;
-            cout<<"inventory"<<endl;
 			pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"'");
 			res=pstmt->executeQuery();
-            cout<<"res->first()"<<endl;
 			res->first();
 			cout<<"Welcome "<<username<<". You are logged in"<<endl;
             test = res->getInt("player_ID");
@@ -213,13 +209,13 @@ void Tatooine(){
     pstmt = con->prepareStatement("SELECT luke FROM player_info WHERE player_ID = "+userstr);
     res=pstmt->executeQuery();
     res->first();
-    luke = res->getBoolean("luke");
+    luke = res->getInt("luke");
     delete res;
     delete pstmt;
     pstmt = con->prepareStatement("SELECT grenade FROM inventory WHERE player_ID = "+userstr);
     res=pstmt->executeQuery();
     res->first();
-    grenade = res->getBoolean("grenade");
+    grenade = res->getInt("grenade");
     delete res;
     delete pstmt;
     here:
@@ -286,7 +282,7 @@ void obiwan(){
     res=pstmt->executeQuery();
     res->first();
     int x;
-    x = res->getBoolean("blaster");
+    x = res->getInt("blaster");
     delete res;
     delete pstmt;
     pstmt=con->prepareStatement("SELECT obiwan FROM player_info WHERE player_ID = "+userstr);
@@ -294,7 +290,7 @@ void obiwan(){
     res->first();
     bool obi;
     string guess;
-    obi = res->getBoolean("obiwan");
+    obi = res->getInt("obiwan");
     delete res;
     delete pstmt;
     cout<<"You arrive at the small hut. Pushing the ragged flap covering the entrance aside, you enter...\n";
