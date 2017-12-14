@@ -153,7 +153,7 @@ void checkProgress(){
     delete res;
     if (x!=0){
         cout<<"Previous save file found.\n1. Resume from save\n2. Create new game"<<endl;
-        cin >> input;
+        getline(cin, input);
         if (input==2){
             pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grappling_hook = 0 WHERE player_ID = "+userstr);
             pstmt->executeUpdate();
@@ -184,7 +184,7 @@ void start(){
     cout <<"Welcome to Albuquerque" << endl;
     cout << "1. Play" <<endl;
     cout << "2. Exit" <<endl;
-    cin >> input;
+    getline(cin, input);
     switch (input){
         case 1:
 	    cout<<"Let the game begin"<<endl<<endl;
@@ -229,7 +229,7 @@ void Tatooine(){
     cout<<"2. Go to the cave"<<endl;
     if (grenade==0)cout<<"3. Go to the worn-down home"<<endl;
     cout<<"4. Save and quit"<<endl;
-    cin >> input;
+    getline(cin, input);
     switch (input) {
         case 1:
             if (luke==1){
@@ -312,7 +312,7 @@ void obiwan(){
     if (x==1) cout<<"3. *Reach for blaster* I think I'll just take it from you, thanks very much\n";
     else cout<<"3. *LOCKED*\n";
     cout<<"4. Save and quit\n";
-    cin>>input;
+    getline(cin, input);
     switch (input){
         case 1:
             cout<<"Obi-Wan - If you can answer this question correct, I'll give you what you need"<<endl;
@@ -387,7 +387,7 @@ void randomcave(){
     if (grenade==blaster==1) cout<<"4. Throw the grenade and pull your blaster (100% chance to succeed)"<<endl;
     else cout<<"4. *LOCKED*"<<endl;
     cout<<"5. Save and quit\n"<<endl;
-    cin >> input;
+    getline(cin, input);
     switch (input){
         case 1:
             cout<<"You rolled a "<<chance<<" out of 100"<<endl;
