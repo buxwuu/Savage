@@ -118,7 +118,7 @@ int createUser(){
 			pstmt=con->prepareStatement("INSERT INTO player_info (username, password) VALUES ('"+username+"', '"+password+"')");
 			pstmt->executeUpdate();
 			delete pstmt;
-			delete res;
+                        delete res;
 			pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"'");
 			res=pstmt->executeQuery();
 			res->first();
@@ -160,7 +160,7 @@ void checkProgress(){
             Tatooine();
             break;
         case 2:
-            Lukeshome();
+            obiwan();
             break;
         case 3:
             randomcave();
@@ -174,9 +174,9 @@ void start(){
     cout << "2. Exit" <<endl;
     cin >> input;
     switch (input){
-		case 1:
-		    cout<<"Let the game begin"<<endl<<endl;
-		    cout<<"A long time ago, before Tupac but not really before Tupac.  Luke Skywalker has returned to his \
+        case 1:
+	    cout<<"Let the game begin"<<endl<<endl;
+	    cout<<"A long time ago, before Tupac but not really before Tupac.  Luke Skywalker has returned to his \
 home planet of Tatooine in order to. . .you know what I don't remember, it's been too long since I've \
 seen the Star Wars movies.  I think he needs to find a way to defeat the Empire. . .which brings up a \
 funny question.  Isn't the Empire the good guys?  I mean they want law and order in the universe, while \
@@ -187,149 +187,269 @@ jokes.  Even the dude I saw bathing in the Boulder Creek River got to put a joke
 keep you waiting anymore, here is 'The Empire Strikes Back' starring Sam Berger as Han Solo, Kevin \
 Kirk as Darth Vader, Hunter Haller as Chewbacca, Max Hayne as Luke Skywalker and Krishna Adettiwar as \
 The Emperor."<<endl<<endl;
-		    Tatooine();
+            cout<<"You are now playing as a Rebel Soldier on Tatooine, your current mission is to meet up with Luke Skywalker"<<endl;
+            cout<<"You currently have no weapons\n"<<endl;
+            Tatooine();
     }
 }
 
 void Tatooine(){
-	system("read -p 'Press Enter to continue...' var");
-	cout<<"You are now playing as a Rebel Soldier on Tatooine, your current mission is to meet up with Luke Skywalker"<<endl;
-        cout<<"You currently have no weapon\n"<<endl;
-	cout<<"1. Go to Luke's destroyed home"<<endl;
-	cout<<"2. Go explore that cave in the mountain over there"<<endl
-        cout<<"3. Save and quit\n"<<endl;
-	cin >> input;
-	switch (input) {
-	    case 1:
-	    	Lukeshome();
-	    	break;
-	    case 2:
-                cout<<"You approach the cave"<<endl;
-                randomcave();
-                system("read -p 'Press Enter to continue...' var");
-                break;
-            case 3:
-                pstmt=con->prepareStatement("UPDATE player_info SET progress = 1 WHERE player_ID = "+userid);
-                pstmt->executeUpdate();
-                cout<<"Your progress has been saved, thanks for playing!"<<endl;
-	}
+    system("read -p 'Press Enter to continue...' var");
+    bool grenade;
+    bool luke;
+    pstmt = con->prepareStatement("SELECT luke FROM player_info WHERE player_ID = "+userid);
+    res=pstmt->executeQuery();
+    res->first();
+    luke = res->getBoolean("luke");
+    delete res;
+    delete pstmt;
+    pstmt = con->prepareStatement("SELECT grenade FROM inventory WHERE player_ID = "+userid);
+    res=pstmt->executeQuery();
+    res->first();
+    grenade = res->getBoolean("grenade");
+    delete res;
+    delete pstmt;
+    here:
+    cout<<"To the west, you see a dome-like building\nTo the east, you see a mountain region with a small cave entrance built in\n \
+To the north, you see a worn-down home structure\n"<<endl;
+    if (luke==0)cout<<"1. Go to the dome-like building"<<endl;
+    cout<<"2. Go to the cave"<<endl;
+    if (grenade==0)cout<<"3. Go to the worn-down home"<<endl
+    cout<<"4. Save and quit\n"<<endl;
+    cin >> input;
+    switch (input) {
+        case 1:
+            if (luke==1){
+                cout<<"INVALID OPTION"<<endl;
+                goto here;
+            }
+            Lukeshome();
+            break;
+        case 2:
+            randomcave();
+            break;
+        case 3:
+            if (grenade==1){
+                cout<<"INVALID OPTION"<<endl;
+                goto here;
+            }
+            obiwan();
+            break;
+        case 4:
+            pstmt=con->prepareStatement("UPDATE player_info SET progress = 1 WHERE player_ID = "+userid);
+            pstmt->executeUpdate();
+            cout<<"Your progress has been saved, thanks for playing!"<<endl;
+            return;
+        default:
+            cout<<"INVALID OPTION"<<endl;
+            goto here;
+    }
 }
 
 void Lukeshome(){
     system("read -p 'Press Enter to continue...' var");
-    cout << "Luke - I need your help to load this stuff onto The Millennium Falcon, so we can go and blow up The Death Star" << endl;
-    cout << "However, I lost my light saber and I need help finding it, can you get it for me?" << endl;
-    cout << "1. Yes" << endl;
-    cout << "2. No" << endl;
-    cin >> input;
-    switch (input)
-    {
-        case 1:
-            cout<<"Thanks! I was jumped by some smugglers while bulls-eyeing womp-rats in my T-16. I think they are set up in that cove over there"<<endl;
-            cout<<"Here, take my spare blaster, you might need it!"<<endl;
-            pstmt=prepareStatement("UPDATE inventory SET blaster = 1 WHERE player_ID = "+userid);
-            pstmt->executeUpdate();
-            delete pstmt;
-            cout<<"BLASTER ACQUIRED\n"<<endl;
-            randomcave();
-            break;
-        case 2:
-            youdie();
-            break;
-    }
+    cout<<"As you enter the building, you see a man you immediately recognize as Luke Skywalker meditating on the floor\nHe looks up at you as you enter\n";
+    cout<<"Luke - Ah, you're the one they've sent to help me, glad to have you!"<<endl;
+    cout << "I have lost my lightsaber and I need you to recover it for me" << endl;
+    cout<<"I was jumped by some smugglers while bulls-eyeing womp-rats in my T-16. I think they are set up in that cave by the mountain"<<endl;
+    cout<<"Here, take my spare blaster, you might need it!"<<endl;
+    pstmt=con->prepareStatement("UPDATE inventory SET blaster = 1 WHERE player_ID = "+userid);
+    pstmt->executeUpdate();
+    delete pstmt;
+    cout<<"BLASTER ACQUIRED\n"<<endl;
+    system("read -p 'Press Enter to continue...' var");
+    cout<<"If you haven't already, you may want to visit Obi-Wan at his home, he might be able to supply you with other gear as well"<<endl;
+    cout<<"Either way, may the Force be with you"<<endl;
+    cout<<"You leave the dwelling\n"<<endl;
+    pstmt=con->prepareStatement("UPDATE player_info SET luke = 1 WHERE player_ID = "+userid);
+    pstmt->executeUpdate();
+    delete pstmt;
+    Tatooine();
 }
 
 void obiwan(){
     system("read -p 'Press Enter to continue...' var");
-    pstmt=prepareStatement("SELECT blaster FROM inventory WHERE player_ID = "+userid);
+    pstmt=con->prepareStatement("SELECT blaster FROM inventory WHERE player_ID = "+userid);
     res=pstmt->executeQuery();
     res->first();
     int x;
-    x = res->getInt("blaster");
+    x = res->getBoolean("blaster");
+    delete res;
+    delete pstmt;
+    pstmt=con->prepareStatement("SELECT obiwan FROM player_info WHERE player_ID = "+userid);
+    res=pstmt->executeQuery();
+    res->first();
+    bool obi;
+    obi = res->getBoolean("obiwan");
     delete res;
     delete pstmt;
     cout<<"You arrive at the small hut. Pushing the ragged flap covering the entrance aside, you enter...\n";
     cout<<"An old man sits at a table in the center of the dwelling\nhe looks up at you as you enter\n";
-    cout<<"Obi-wan - Ah, a visitor! How can I help you?\n";
-    cout<<"You - I've come to help Luke Skywalker, can you assist?\n";
-    if (x==1) cout<<"Obi-wan - He lives in the dome-shaped building nearby\nIf you prove yourself worthy, I can also give you a handy piece of gear\n\n";
-    else cout<<"Obi-wan - If you prove yourself worthy, I can give you a handy piece of gear\n\n";
+    if (obi==0){
+        cout<<"Obi-Wan - Ah, a visitor! How can I help you?\n";
+        cout<<"You - I've come to help Luke Skywalker, can you assist?\n";
+        if (x==0) cout<<"Obi-Wan - He lives in the dome-shaped building nearby\nIf you prove yourself worthy, I can also give you a handy piece of gear\n\n";
+        else cout<<"Obi-Wan - If you prove yourself worthy, I can give you a handy piece of gear\n\n";
+    }
+    else cout<<"Obi-Wan - You're back, change your mind on that challenge?"<<endl;
+    here:
     cout<<"1. I'll try your challenge\n";
     cout<<"2. This isn't worth my time, thanks anyway old man\n";
     if (x==1) cout<<"3. *Reach for blaster* I think I'll just take it from you, thanks very much\n";
     else cout<<"3. *LOCKED*\n";
-    cout<<"4. *Save and exit*\n";
+    cout<<"4. Save and quit\n";
     cin>>input;
     switch (cin){
         case 1:
+            string guess;
+            cout<<"Obi-Wan - If you can answer this question correct, I'll give you what you need"<<endl;
+            cout<<"Obi-Wan - This should be simple for a rebel soldier like you"<<endl;
+            cout<<"Obi-Wan - What was the name of the Star Destroyer that Darth Vader commanded?"<<endl;
+            getline(cin, guess);
+            if (guess=="Executor"||guess=="executor"||guess=="EXECUTOR"){
+                cout<<"Obi-Wan - Indeed. It was the most fearsome Star Destroyer I've ever come across"<<endl;
+                cout<<"Obi-Wan - Well, I suppose I owe you this\nHe hands you a small sphere\nGRENADE ACQUIRED"<<endl;
+            }
+            pstmt=con->prepareStatement("UPDATE player_info SET luke = 1 WHERE player_ID = "+userid);
+            pstmt->executeUpdate();
+            delete pstmt;
             break;
         case 2:
-            cout<<"Obi-wan - May the Force be with you\n\nYou exit the dwelling\n\n";
-            cout<<"1. Go to Luke's home"
+            pstmt=con->prepareStatement("UPDATE player_info SET luke = 1 WHERE player_ID = "+userid);
+            pstmt->executeUpdate();
+            delete pstmt;
+            cout<<"Obi-Wan - May the Force be with you, return if you need\nYou exit the dwelling\n"<<endl;
+            Tatooine();
             break;
         case 3:
-            break;
+            if (x==0){
+                cout<<"INVALID OPTION"<<endl;
+                goto here;
+            }
+            cout<<"Obi-Wan - Very well\nHe hands over a small sphere\nGRENADE ACQUIRED"<<endl;
+            cout<<"Obi-Wan - Now leave my home, and don't come back"<<endl;
+            pstmt=con->prepareStatement("UPDATE inventory SET grenade = 1 WHERE player_ID = "+userid);
+            pstmt->executeUpdate();
+            delete pstmt;
+            pstmt=con->prepareStatement("UPDATE player_info SET luke = 1 WHERE player_ID = "+userid);
+            pstmt->executeUpdate();
+            delete pstmt;
+            cout<<"You leave the old man's dwelling\n"<<endl;
+            Tatooine();
         case 4:
+            pstmt=con->prepareStatement("UPDATE player_info SET progress = 2 WHERE player_ID = "+userid);
+            pstmt->executeUpdate();
+            delete pstmt;
+            cout<<"Your progress has been saved, thanks for playing!"<<endl;
             break;
         default:
+            cout<<"INVALID OPTION"<<endl;
+            goto here;
             break;
-    }
-    switch (x){
-        case 0:
-            cout
     }
 }
 
 void randomcave(){
+    srand(time(NULL));
+    int chance;
     system("read -p 'Press Enter to continue...' var");
     cout<<"You enter the cave, and spot 5 smugglers gathered around a campfire"<<endl;
     cout<<"Unfortunately, they seem to have spotted you too!"<<endl;
     cout<<"Smuggler - You've messed up, boy! *draws blaster*"<<endl;
-    pstmt=prepareStatement("SELECT blaster FROM inventory WHERE player_ID = "+userid);
+    pstmt=con->prepareStatement("SELECT * FROM inventory WHERE player_ID = "+userid);
     res=pstmt->executeQuery();
     res->first();
-    int x;
-    x = res->getInt("blaster");
+    int blaster;
+    int grenade;
+    blaster = res->getInt("blaster");
+    grenade = res->getInt("grenade");
     delete res;
     delete pstmt;
-    switch (x){
-        case 0:
-            cout<<"You reach for your blaster holster, realizing you are still unarmed!"<<endl;
-            cout<<"You dive for the nearest smuggler, but are easily shot down"<<endl;
-            cout<<"YOU HAVE DIED\nGAME OVER"<<endl;
-            pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grappling_hook = 0 WHERE player_ID = "+userid);
-            pstmt->executeUpdate();
-            delete pstmt;
-            return;
-        case 1:
-            cout<<"You reach for your holster and wrap your fingers around Luke's blaster"<<endl;
-            cout<<"A firefight ensues...\nYou manage to kill 3 of the 5 smugglers, but the other 2 escape.  However, you did manage to find and secure Luke's lightsaber"<<endl;
-            cout<<"LIGHTSABER ACQUIRED"<<endl;
-            
-    }
-    /*
-    cout << " You - I am looking around for something that you may have."<<endl;
-    cout << " Smuggler - What may that be?"<<endl;
-    cout << " You - A lightsaber."<<endl;
-    cout << " Smiggler - I have one of those, but it'll cost you."<<endl;
-    cout << " 1. Continue talking to him." << endl;
-    cout << " 2. Reach for your blaster pistol" <<endl;
-     */
+    chance = rand() % 100 + 1;
+    here:
+    cout<<"1. Charge with your fists (25% chance to succeed)"<<endl;
+    if (blaster==1) cout<<"2. Pull your blaster (50% chance to succeed)"<<endl;
+    else cout<<"2. *LOCKED*"<<endl;
+    if (grenade==1) cout<<"3. Throw the grenade (75% chance to succeed)"<<endl;
+    else cout<<"3. *LOCKED*"<<endl;
+    if (grenade==blaster==1) cout<<"4. Throw the grenade and pull your blaster (100% chance to succeed)"<<endl;
+    else cout<<"4. *LOCKED*"<<endl;
+    cout<<"5. Save and quit\n"<<endl;
     cin >> input;
-    
-    system("read -p 'Press Enter to continue...' var");
-
-    switch (input)
-    {
-            
+    switch (input){
         case 1:
-            cout << "You - How much?"<<endl;
-            cout << "Smuggler - Your life."<<endl;
-            cout<<" You reach for your blaster pistol and a firefight ensues. . .you manage to kill 3 of the 5 smugglers, but the other 2 escape.  However, you did manage to find and secure Luke's lightsaber, but on the flipside you were shot in the arm."<<endl;
-            break;
+            cout<<"You rolled a "<<chance<<" out of 100"<<endl;
+            system("read -p 'Press Enter to continue...' var");
+            if (chance>74){
+                cout<<"You charge the smugglers, yelling wildly with your fists raised"<<endl;
+                cout<<"You charge catches them off guard, you smash the first smugglers nose with a nice right hook"<<endl;
+                cout<<"He goes down and you grab his blaster"<<endl;
+                cout<<"Using his body as a shield, you snap off two shots, taking down the closest smugglers"<<endl;
+                cout<<"The survivors flee"<<endl;
+            }
+            else{
+                cout<<"You charge the smugglers, yelling wildly with your fists raised"<<endl;
+                cout<<"The one who spoke shoots you down, laughing with his friends as your vision goes dark"<<endl;
+                cout<<"YOU HAVE DIED\nGAME OVER"<<endl;
+                pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grenade = 0 WHERE player_ID = "+userid);
+                pstmt->executeUpdate();
+                delete pstmt;
+                pstmt=con->prepareStatement("UPDATE player_info SET luke = 0, obiwan = 0, progress = 0 WHERE player_ID = "+userid);
+                pstmt->executeUpdate();
+                delete pstmt;
+                return;
+            }
         case 2:
-            cout<<"You reach for your blaster pistol and a firefight ensues. . .you manage to kill 3 of the 5 smugglers, but the other 2 escape.  However, you did manage to find and secure Luke's lightsaber."<<endl;
+            if (blaster==1){
+                cout<<"You rolled a "<<chance<<" out of 100"<<endl;
+                if (chance>49){
+                    system("read -p 'Press Enter to continue...' var");
+                    cout<<"You pull your blaster and take cover behind a nearby boulder"<<endl;
+                    cout<<"A blaster shot hits your shoulder, wounding your arm"<<endl;
+                    cout<<"You fire off a few shots, taking down three of the smugglers"<<endl;
+                    cout<<"The remaining 2 smugglers flee"<<endl;
+                }
+                else {
+                    cout<<"You dive behind the nearest boulder"<<endl;
+                    cout<<"You pull your blaster, only managing to take down one smuggler before the others shoot you down"<<endl;
+                    cout<<"YOU HAVE DIED\nGAME OVER"<<endl;
+                    pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grenade = 0 WHERE player_ID = "+userid);
+                    pstmt->executeUpdate();
+                    delete pstmt;
+                    pstmt=con->prepareStatement("UPDATE player_info SET luke = 0, obiwan = 0, progress = 0 WHERE player_ID = "+userid);
+                    pstmt->executeUpdate();
+                    delete pstmt;
+                    return;
+                }
+            }
+            else{
+                cout<<"INVALID OPTION"<<endl;
+                goto here;
+            }
+            break;
+        case 3:
+            
+            break;
+        case 4:
+            break;
+        case 5:
             break;
     }
     system("read -p 'Press Enter to continue...' var");
+    cout<<"You search the bodies, finding Luke's lightsaber on the first smuggler's corpse"<<endl;
+    cout<<"LIGHTSABER ACQUIRED"<<endl;
+    pstmt=con->prepareStatement("UPDATE inventory SET lightsaber = 1 WHERE player_ID = "+userid);
+    pstmt->executeUpdate();
+    delete pstmt;
+    system("read -p 'Press Enter to continue...' var");
+    cout<<"YOU WIN"<<endl;
+    cout<<"CONGRATULATIONS"<<endl;
+    cout<<"GAME OVER"<<endl;
+    pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grenade = 0 WHERE player_ID = "+userid);
+    pstmt->executeUpdate();
+    delete pstmt;
+    pstmt=con->prepareStatement("UPDATE player_info SET luke = 0, obiwan = 0, progress = 0 WHERE player_ID = "+userid);
+    pstmt->executeUpdate();
+    delete pstmt;
+    return;
 }
