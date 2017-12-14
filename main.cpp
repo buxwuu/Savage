@@ -133,6 +133,8 @@ int createUser(){
 }
 
 void checkProgress(){
+	delete pstmt;
+	delete res;
     pstmt=con->prepareStatement("SELECT progress FROM player_info WHERE player_ID = "+userid);
     res=pstmt->executeQuery();
     int x;
