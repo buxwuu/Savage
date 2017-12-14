@@ -46,7 +46,7 @@ void obiwan();
 void randomcave();
 string update;
 string update2;
-string userstr;
+char userstr;
 string instr;
 stringstream inss;
 int input;
@@ -154,15 +154,12 @@ void checkProgress(){
     if (x!=0){
         here:;
         cout<<"Previous save file found.\n1. Resume from save\n2. Create new game"<<endl;
-        getline(cin, instr);
-        if (instr!="2" && instr!="1"){
+        cin.get(instr);
+        if (instr!='2' && instr!='1'){
             cout<<"INVALID OPTION"<<endl;
             goto here;
         }
-        inss<<instr;
-        inss>>input;
-        inss.clear();
-        if (input==2){
+        if (instr=='2'){
             pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grenade = 0 WHERE player_ID = "+userstr);
             pstmt->executeUpdate();
             delete pstmt;
@@ -193,31 +190,33 @@ void start(){
     cout <<"Welcome to Albuquerque" << endl;
     cout << "1. Play" <<endl;
     cout << "2. Exit" <<endl;
-    getline(cin, instr);
-    if (instr!="1" && instr!="2"){
+    cin.get(instr);
+    if (instr!='1' && instr!='2'){
         cout<<"INVALID OPTION"<<endl;
         goto here;
     }
-    inss<<instr;
-    inss>>input;
-    inss.clear();
+    input = instr - '0';
     switch (input){
         case 1:
-	    cout<<"Let the game begin"<<endl<<endl;
-	    cout<<"A long time ago, before Tupac but not really before Tupac.  Luke Skywalker has returned to his \
-home planet of Tatooine in order to. . .you know what I don't remember, it's been too long since I've \
-seen the Star Wars movies.  I think he needs to find a way to defeat the Empire. . .which brings up a \
-funny question.  Isn't the Empire the good guys?  I mean they want law and order in the universe, while \
-Luke and his band of smugglers are trying to overthrow it.  Anyway maybe we got a little to over our heads \
-n this one. . .just please do me a favor and lower your expectations, we promise we'll make it up to you \
-as the game goes on.  We are all pressed for time in our other classes anyway, we had to dig hard for \
-jokes.  Even the dude I saw bathing in the Boulder Creek River got to put a joke in here.  Anyway, not to \
-keep you waiting anymore, here is 'The Empire Strikes Back' starring Sam Berger as Han Solo, Kevin \
-Kirk as Darth Vader, Hunter Haller as Chewbacca, Max Hayne as Luke Skywalker and Krishna Adettiwar as \
-The Emperor."<<endl<<endl;
+    	    cout<<"Let the game begin"<<endl<<endl;
+    	    cout<<"A long time ago, before Tupac but not really before Tupac.  Luke Skywalker has returned to his \
+    home planet of Tatooine in order to. . .you know what I don't remember, it's been too long since I've \
+    seen the Star Wars movies.  I think he needs to find a way to defeat the Empire. . .which brings up a \
+    funny question.  Isn't the Empire the good guys?  I mean they want law and order in the universe, while \
+    Luke and his band of smugglers are trying to overthrow it.  Anyway maybe we got a little to over our heads \
+    n this one. . .just please do me a favor and lower your expectations, we promise we'll make it up to you \
+    as the game goes on.  We are all pressed for time in our other classes anyway, we had to dig hard for \
+    jokes.  Even the dude I saw bathing in the Boulder Creek River got to put a joke in here.  Anyway, not to \
+    keep you waiting anymore, here is 'The Empire Strikes Back' starring Sam Berger as Han Solo, Kevin \
+    Kirk as Darth Vader, Hunter Haller as Chewbacca, Max Hayne as Luke Skywalker and Krishna Adettiwar as \
+    The Emperor."<<endl<<endl;
             cout<<"You are now playing as a Rebel Soldier on Tatooine, your current mission is to meet up with Luke Skywalker"<<endl;
             cout<<"You currently have no weapons\n"<<endl;
             Tatooine();
+            break;
+        case 2:
+            cout<<"Goodbye"<<endl;
+            break;
     }
 }
 
@@ -244,19 +243,12 @@ void Tatooine(){
     cout<<"2. Go to the cave"<<endl;
     if (grenade==0)cout<<"3. Go to the worn-down home"<<endl;
     cout<<"4. Save and quit"<<endl;
-    getline(cin, instr);
-    if (instr[1]!=NULL){
+    cin.get(instr);
+    if (isblank(instr)){
         cout<<"INVALID OPTION"<<endl;
         goto here;
     }
-    else if (!isdigit(instr[0])){
-        cout<<"INVALID OPTION"<<endl;
-        goto here;
-    }
-    inss<<instr;
-    inss>>input;
-    inss.clear();
-    cout<<"You chose "<<input<<", "<<instr<<endl;
+    input = instr - '0';
     switch (input) {
         case 1:
             if (luke==1){
@@ -338,26 +330,12 @@ void obiwan(){
     if (x==1) cout<<"3. *Reach for blaster* I think I'll just take it from you, thanks very much\n";
     else cout<<"3. *LOCKED*\n";
     cout<<"4. Save and quit\n";
-    getline(cin, instr);
-    if (sizeof(instr)==0 || sizeof(instr)>1){
+    cin.get(instr);
+    if (isblank(instr)){
         cout<<"INVALID OPTION"<<endl;
         goto here;
     }
-    else if (!isdigit(instr[0])){
-                cout<<"INVALID OPTION"<<endl;
-                goto here;
-    }
-    if (sizeof(instr)==0 || sizeof(instr)>1){
-        cout<<"INVALID OPTION"<<endl;
-        goto here;
-    }
-    else if (!isdigit(instr[0])){
-                cout<<"INVALID OPTION"<<endl;
-                goto here;
-    }
-    inss<<instr;
-    inss>>input;
-    inss.clear();
+    input = instr - '0';
     switch (input){
         case 1:
             cout<<"Obi-Wan - If you can answer this question correct, I'll give you what you need"<<endl;
@@ -441,18 +419,12 @@ void randomcave(){
     if (grenade==blaster==1) cout<<"4. Throw the grenade and pull your blaster (100% chance to succeed)"<<endl;
     else cout<<"4. *LOCKED*"<<endl;
     cout<<"5. Save and quit\n"<<endl;
-    getline(cin, instr);
-    if (sizeof(instr)==0 || sizeof(instr)>1){
+    cin.get(instr);
+    if (isblank(instr)){
         cout<<"INVALID OPTION"<<endl;
         goto here;
     }
-    else if (!isdigit(instr[0])){
-                cout<<"INVALID OPTION"<<endl;
-                goto here;
-    }
-    inss<<instr;
-    inss>>input;
-    inss.clear();
+    input = instr - '0';
     switch (input){
         case 1:
             cout<<"You rolled a "<<chance<<" out of 100"<<endl;
