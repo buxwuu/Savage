@@ -246,8 +246,8 @@ void Tatooine(){
     cout<<"4. Save and quit"<<endl;
     getline(cin, instr);
     cout<<"You chose "<<instr<<": "<<endl;
-    if (sizeof(instr)==0 || sizeof(instr)>1){
-        cout<<"INVALID OPTION: size: "<<sizeof(instr)<<endl;
+    if (sizeof(*instr)==0 || sizeof(*instr)>1){
+        cout<<"INVALID OPTION: size: "<<sizeof(*instr)<<endl;
         goto here;
     }
     else if (!isdigit(instr[0])){
