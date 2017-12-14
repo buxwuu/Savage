@@ -40,6 +40,7 @@ void checkProgress();
 void start();
 void Tatooine();
 void Lukeshome();
+void obiwan();
 void randomcave();
 string update;
 string update2;
@@ -54,7 +55,7 @@ sql::PreparedStatement *pstmt;
 int main(void)
 {
 	driver = sql::mysql::get_driver_instance();
-	con=driver->connect("localhost", "root", "toor");//Will not work on EC2 unless password = toor
+	con=driver->connect("localhost", "root", "storylover");//Will not work on EC2 unless password = toor
 	con->setSchema("techtest");
         while (true){
             userid = login();
@@ -214,7 +215,7 @@ void Tatooine(){
 To the north, you see a worn-down home structure\n"<<endl;
     if (luke==0)cout<<"1. Go to the dome-like building"<<endl;
     cout<<"2. Go to the cave"<<endl;
-    if (grenade==0)cout<<"3. Go to the worn-down home"<<endl
+    if (grenade==0)cout<<"3. Go to the worn-down home"<<endl;
     cout<<"4. Save and quit\n"<<endl;
     cin >> input;
     switch (input) {
@@ -280,6 +281,7 @@ void obiwan(){
     res=pstmt->executeQuery();
     res->first();
     bool obi;
+    string guess;
     obi = res->getBoolean("obiwan");
     delete res;
     delete pstmt;
@@ -299,9 +301,8 @@ void obiwan(){
     else cout<<"3. *LOCKED*\n";
     cout<<"4. Save and quit\n";
     cin>>input;
-    switch (cin){
+    switch (input){
         case 1:
-            string guess;
             cout<<"Obi-Wan - If you can answer this question correct, I'll give you what you need"<<endl;
             cout<<"Obi-Wan - This should be simple for a rebel soldier like you"<<endl;
             cout<<"Obi-Wan - What was the name of the Star Destroyer that Darth Vader commanded?"<<endl;
