@@ -231,11 +231,10 @@ void start(){
     	    cout<<"Kevin Kirk as Darth Vader, Hunter Haller as Chewbacca, Max Hayne as Luke Skywalker"<<endl;
         	usleep(1250000);
     	    cout<<"And Krishna Adettiwar as The Emperor"<<endl<<endl;
-    	    for (int i=0;i<40;i++){
+    	    for (int i=0;i<60;i++){
     	    	usleep(600000);
     	    	cout<<endl;
     	    }
-    	    cout<<string(100,'\n');
         	usleep(1);
             cout<<"You are now playing as a Rebel Soldier on Tatooine, your current mission is to meet up with Luke Skywalker"<<endl;
         	usleep(500000);
