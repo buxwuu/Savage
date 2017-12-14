@@ -247,11 +247,11 @@ void Tatooine(){
     getline(cin, instr);
     cout<<"You chose "<<instr<<endl;
     if (sizeof(instr)==0 || sizeof(instr)>1){
-        cout<<"INVALID OPTION"<<endl;
+        cout<<"INVALID OPTION: size: "<<sizeof(instr)<<endl;
         goto here;
     }
     else if (!isdigit(instr[0])){
-        cout<<"INVALID OPTION"<<endl;
+        cout<<"INVALID OPTION, isn't digit"<<endl;
         goto here;
     }
     inss<<instr;
