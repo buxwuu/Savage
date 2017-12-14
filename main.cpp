@@ -85,8 +85,6 @@ int login(){
 		if (!res->first()){
 			cout<<"User not found. Enter again or create account?\n1. Create account\n2. Enter again"<<endl;
 			getline(cin, choice);
-			delete pstmt;
-			delete res;
 			goto fin;
 		}
 		userid=res->getInt("player_ID");
@@ -95,6 +93,8 @@ int login(){
 		delete res;
 		return userid;
 		fin:;
+		delete pstmt;
+		delete res;
 	}
 }
 
