@@ -59,6 +59,7 @@ int main(void){
 	con=driver->connect("localhost", "root", "toor");//Will not work on EC2 unless password = toor
 	con->setSchema("techtest");
         while (true){
+            system("read -p 'Press Enter to begin...' var");
             userid = login();
             stringstream ss;
             ss<<userid;
@@ -72,6 +73,7 @@ int login(){
 	string password;
 	string choice;
 	cout<<"Would you like to create an account or log in?\n1. Create account\n2. Log in"<<endl;
+    fflush(stdin);
 	getline(cin, choice);
 	while (true){
 		if(choice=="1"){
@@ -139,6 +141,7 @@ int createUser(){
 }
 
 void checkProgress(){
+    cout<<"Checking for previous save..."<<endl;
 	delete pstmt;
 	delete res;
     pstmt=con->prepareStatement("SELECT progress FROM player_info WHERE player_ID = "+userstr);
@@ -219,8 +222,8 @@ void Tatooine(){
     delete res;
     delete pstmt;
     here:
-    cout<<"To the west, you see a dome-like building\nTo the east, you see a mountain region with a small cave entrance built in\n \
-To the north, you see a worn-down home structure\n"<<endl;
+    cout<<"To the west, you see a dome-like building\nTo the east, you see a mountain region with a small cave entrance built in"<<endl;
+    cout<<"To the north, you see a worn-down home structure\n"<<endl;
     if (luke==0)cout<<"1. Go to the dome-like building"<<endl;
     cout<<"2. Go to the cave"<<endl;
     if (grenade==0)cout<<"3. Go to the worn-down home"<<endl;
