@@ -156,7 +156,7 @@ void checkProgress(){
         getline(cin, instr);
         inss<<instr;
         inss>>input;
-        inss.str("");
+        inss.clear();
         if (input==2){
             pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grappling_hook = 0 WHERE player_ID = "+userstr);
             pstmt->executeUpdate();
@@ -190,7 +190,7 @@ void start(){
     getline(cin,instr);
     inss<<instr;
     inss>>input;
-    inss.str("");
+    inss.clear();
     switch (input){
         case 1:
 	    cout<<"Let the game begin"<<endl<<endl;
@@ -237,7 +237,7 @@ void Tatooine(){
     getline(cin,instr);
     inss<<instr;
     inss>>input;
-    inss.str("");
+    inss.clear();
     cout<<"You chose "<<input<<", "<<instr<<endl;
     switch (input) {
         case 1:
@@ -323,7 +323,7 @@ void obiwan(){
     getline(cin,instr);
     inss<<instr;
     inss>>input;
-    inss.str("");
+    inss.clear();
     switch (input){
         case 1:
             cout<<"Obi-Wan - If you can answer this question correct, I'll give you what you need"<<endl;
@@ -407,7 +407,7 @@ void randomcave(){
     getline(cin,instr);
     inss<<instr;
     inss>>input;
-    inss.str("");
+    inss.clear();
     switch (input){
         case 1:
             cout<<"You rolled a "<<chance<<" out of 100"<<endl;
