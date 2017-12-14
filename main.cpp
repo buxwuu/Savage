@@ -283,7 +283,6 @@ void Tatooine(){
 }
 
 void Lukeshome(){
-    system("read -p 'Press Enter to continue...' var");
     cout<<"As you enter the building, you see a man you immediately recognize as Luke Skywalker meditating on the floor\nHe looks up at you as you enter\n";
     cout<<"Luke - Ah, you're the one they've sent to help me, glad to have you!"<<endl;
     cout << "I have lost my lightsaber and I need you to recover it for me" << endl;
