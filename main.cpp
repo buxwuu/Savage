@@ -75,6 +75,7 @@ int login(){
 	string choice;
 	cout<<"Would you like to create an account or log in?\n1. Create account\n2. Log in"<<endl;
     fflush(stdin);
+    cin.clear();
 	getline(cin, choice);
 	while (true){
 		if(choice=="1"){
@@ -227,7 +228,7 @@ void Tatooine(){
     if (luke==0)cout<<"1. Go to the dome-like building"<<endl;
     cout<<"2. Go to the cave"<<endl;
     if (grenade==0)cout<<"3. Go to the worn-down home"<<endl;
-    cout<<"4. Save and quit\n"<<endl;
+    cout<<"4. Save and quit"<<endl;
     cin >> input;
     switch (input) {
         case 1:
@@ -364,8 +365,7 @@ void obiwan(){
 void randomcave(){
     srand(time(NULL));
     int chance;
-    system("read -p 'Press Enter to continue...' var");
-    cout<<"You enter the cave, and spot 5 smugglers gathered around a campfire"<<endl;
+    cout<<"\nYou enter the cave, and spot 5 smugglers gathered around a campfire"<<endl;
     cout<<"Unfortunately, they seem to have spotted you too!"<<endl;
     cout<<"Smuggler - You've messed up, boy! *draws blaster*"<<endl;
     pstmt=con->prepareStatement("SELECT * FROM inventory WHERE player_ID = "+userstr);
