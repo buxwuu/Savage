@@ -333,6 +333,9 @@ void obiwan(){
             if (guess=="Executor"||guess=="executor"||guess=="EXECUTOR"){
                 cout<<"Obi-Wan - Indeed. It was the most fearsome Star Destroyer I've ever come across"<<endl;
                 cout<<"Obi-Wan - Well, I suppose I owe you this\nHe hands you a small sphere\nGRENADE ACQUIRED"<<endl;
+                pstmt=con->prepareStatement("UPDATE inventory SET grenade = 1 WHERE player_ID = "+userstr);
+                pstmt->executeUpdate();
+                delete pstmt;
             }
             else{
                 cout<<"Obi-Wan - Incorrect, I'm afraid"<<endl;
