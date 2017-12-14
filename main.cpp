@@ -115,16 +115,13 @@ int createUser(){
 			getline(cin, choice);
 		}
 		else{
-			delete pstmt;
 			pstmt=con->prepareStatement("INSERT INTO player_info (username, password) VALUES ('"+username+"', '"+password+"')");
 			pstmt->executeUpdate();
 			delete pstmt;
-            delete res;
             cout<<"player_info"<<endl;
             pstmt=con->prepareStatement("INSERT INTO inventory (blaster, lightsaber, grenade) VALUES ('0', '0', '0')");
             pstmt->executeUpdate();
             delete pstmt;
-            delete res;
             cout<<"inventory"<<endl;
 			pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"'");
 			res=pstmt->executeQuery();
