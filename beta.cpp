@@ -201,6 +201,7 @@ void start(){
     input = instr - '0';
     switch (input){
         case 1:
+    	    cout<<string(100,'\n');
     	    cout<<"Let the game begin"<<endl<<endl;
         	usleep(500000);
     	    cout<<"A long time ago, before Tupac but not really before Tupac"<<endl;
@@ -230,8 +231,8 @@ void start(){
     	    cout<<"Kevin Kirk as Darth Vader, Hunter Haller as Chewbacca, Max Hayne as Luke Skywalker"<<endl;
         	usleep(1250000);
     	    cout<<"And Krishna Adettiwar as The Emperor"<<endl<<endl;
-    	    for (int i=0;i<20;i++){
-    	    	usleep(800000);
+    	    for (int i=0;i<40;i++){
+    	    	usleep(600000);
     	    	cout<<endl;
     	    }
     	    cout<<string(100,'\n');
