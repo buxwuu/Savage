@@ -75,7 +75,7 @@ int login(){
 	string choice;
 	cout<<"Would you like to create an account or log in?\n1. Create account\n2. Log in"<<endl;
     fflush(stdin);
-    cin.sync();
+    cin.ignore (numeric_limits<streamsize>::max(), '\n'); 
 	getline(cin, choice);
 	while (true){
 		if(choice=="1"){
@@ -317,7 +317,7 @@ void obiwan(){
             cout<<"Obi-Wan - If you can answer this question correct, I'll give you what you need"<<endl;
             cout<<"Obi-Wan - This should be simple for a rebel soldier like you"<<endl;
             cout<<"Obi-Wan - What was the name of the Star Destroyer that Darth Vader commanded?"<<endl;
-            cin.sync();
+            cin.ignore (numeric_limits<streamsize>::max(), '\n'); 
             getline(cin, guess);
             cout<<"You guessed "<<guess<<endl;
             if (guess=="Executor"||guess=="executor"||guess=="EXECUTOR"){
