@@ -238,6 +238,7 @@ void Tatooine(){
     inss<<instr;
     inss>>input;
     inss.str("");
+    cout<<"You chose "<<input<<", "<<instr<<endl;
     switch (input) {
         case 1:
             if (luke==1){
