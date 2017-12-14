@@ -85,6 +85,8 @@ int login(){
 		if (!res->first()){
 			cout<<"User not found. Enter again or create account?\n1. Create account\n2. Enter again"<<endl;
 			getline(cin, choice);
+			delete pstmt;
+			delete res;
 			goto fin;
 		}
 		userid=res->getInt("player_ID");
@@ -93,8 +95,6 @@ int login(){
 		delete res;
 		return userid;
 		fin:;
-		delete pstmt;
-		delete res;
 	}
 }
 
@@ -119,7 +119,7 @@ int createUser(){
 			pstmt=con->prepareStatement("INSERT INTO player_info (username, password) VALUES ('"+username+"', '"+password+"')");
 			pstmt->executeUpdate();
 			delete pstmt;
-                        delete res;
+            delete res;
 			pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"'");
 			res=pstmt->executeQuery();
 			res->first();
