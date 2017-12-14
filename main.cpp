@@ -282,7 +282,6 @@ void Lukeshome(){
 }
 
 void obiwan(){
-    system("read -p 'Press Enter to continue...' var");
     pstmt=con->prepareStatement("SELECT blaster FROM inventory WHERE player_ID = "+userstr);
     res=pstmt->executeQuery();
     res->first();
@@ -303,7 +302,7 @@ void obiwan(){
     if (obi==0){
         cout<<"Obi-Wan - Ah, a visitor! How can I help you?\n";
         cout<<"You - I've come to help Luke Skywalker, can you assist?\n";
-        if (x==0) cout<<"Obi-Wan - He lives in the dome-shaped building nearby\nIf you prove yourself worthy, I can also give you a handy piece of gear\n\n";
+        if (x==0) cout<<"Obi-Wan - He lives in the dome-shaped building nearby\nObi-Wan - If you prove yourself worthy, I can also give you a handy piece of gear\n\n";
         else cout<<"Obi-Wan - If you prove yourself worthy, I can give you a handy piece of gear\n\n";
     }
     else cout<<"Obi-Wan - You're back, change your mind on that challenge?"<<endl;
@@ -325,15 +324,19 @@ void obiwan(){
                 cout<<"Obi-Wan - Indeed. It was the most fearsome Star Destroyer I've ever come across"<<endl;
                 cout<<"Obi-Wan - Well, I suppose I owe you this\nHe hands you a small sphere\nGRENADE ACQUIRED"<<endl;
             }
-            pstmt=con->prepareStatement("UPDATE player_info SET luke = 1 WHERE player_ID = "+userstr);
+            else{
+                cout<<"Obi-Wan - Incorrect, I'm afraid"<<endl;
+                cout<<"I'm afraid I must ask you to leave now"<<endl;
+            }
+            pstmt=con->prepareStatement("UPDATE player_info SET obiwan = 1 WHERE player_ID = "+userstr);
             pstmt->executeUpdate();
             delete pstmt;
             break;
         case 2:
-            pstmt=con->prepareStatement("UPDATE player_info SET luke = 1 WHERE player_ID = "+userstr);
+            pstmt=con->prepareStatement("UPDATE player_info SET obiwan = 1 WHERE player_ID = "+userstr);
             pstmt->executeUpdate();
             delete pstmt;
-            cout<<"Obi-Wan - May the Force be with you, return if you need\nYou exit the dwelling\n"<<endl;
+            cout<<"Obi-Wan - May the Force be with you, return if you wish\nYou exit the dwelling\n"<<endl;
             Tatooine();
             break;
         case 3:
