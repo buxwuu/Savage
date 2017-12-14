@@ -250,9 +250,10 @@ void Tatooine(){
         goto here;
     }
     else if (!isdigit(instr[0])){
-                cout<<"INVALID OPTION"<<endl;
-                goto here;
+        cout<<"INVALID OPTION"<<endl;
+        goto here;
     }
+    cout<<"VALID: "<<instr<<endl;
     inss<<instr;
     inss>>input;
     inss.clear();
