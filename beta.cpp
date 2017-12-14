@@ -201,19 +201,40 @@ void start(){
     input = instr - '0';
     switch (input){
         case 1:
+        	usleep(250000);
     	    cout<<"Let the game begin"<<endl<<endl;
-    	    cout<<"A long time ago, before Tupac but not really before Tupac.  Luke Skywalker has returned to his \
-    home planet of Tatooine in order to. . .you know what I don't remember, it's been too long since I've \
-    seen the Star Wars movies.  I think he needs to find a way to defeat the Empire. . .which brings up a \
-    funny question.  Isn't the Empire the good guys?  I mean they want law and order in the universe, while \
-    Luke and his band of smugglers are trying to overthrow it.  Anyway maybe we got a little to over our heads \
-    n this one. . .just please do me a favor and lower your expectations, we promise we'll make it up to you \
-    as the game goes on.  We are all pressed for time in our other classes anyway, we had to dig hard for \
-    jokes.  Even the dude I saw bathing in the Boulder Creek River got to put a joke in here.  Anyway, not to \
-    keep you waiting anymore, here is 'The Empire Strikes Back' starring Sam Berger as Han Solo, Kevin \
-    Kirk as Darth Vader, Hunter Haller as Chewbacca, Max Hayne as Luke Skywalker and Krishna Adettiwar as \
-    The Emperor."<<endl<<endl;
+        	usleep(250000);
+    	    cout<<"A long time ago, before Tupac but not really before Tupac"<<endl;
+        	usleep(250000);
+    	    cout<<"Luke Skywalker has returned to his home planet of Tatooine in order to. . ."<<endl;
+        	usleep(250000);
+    	    cout<<"You know what I don't remember, it's been too long since i've seen the Star Wars movies"<<endl;
+        	usleep(250000);
+    	    cout<<"I think he needs to find a way to defeat the Empire. . .which brings up a funny question"<<endl;
+        	usleep(250000);
+    	    cout<<"Isn't the Empire the good guys?  I mean they want law and order in the universe"<<endl;
+        	usleep(250000);
+    	    cout<<"While Luke and his band of smugglers are trying to overthrow it"<<endl;
+        	usleep(250000);
+    	    cout<<"Anyway maybe we got a little to over our heads n this one. . ."<<endl;
+        	usleep(250000);
+    	    cout<<"Just please do me a favor and lower your expectations"<<endl;
+        	usleep(250000);
+    	    cout<<"We promise we'll make it up to you as the game goes on"<<endl;
+        	usleep(250000);
+    	    cout<<"We are all pressed for time in our other classes anyway, we had to dig hard for jokes"<<endl;
+        	usleep(250000);
+    	    cout<<"Even the dude I saw bathing in the Boulder Creek River got to put a joke in here"<<endl;
+        	usleep(250000);
+    	    cout<<"Anyway, not to keep you waiting anymore, here is 'The Empire Strikes Back' starring Sam Berger as Han Solo"<<endl;
+        	usleep(250000);
+    	    cout<<"Kevin Kirk as Darth Vader, Hunter Haller as Chewbacca, Max Hayne as Luke Skywalker"<<endl;
+        	usleep(250000);
+    	    cout<<"And Krishna Adettiwar as The Emperor"<<endl<<endl;
+    	    cout<<string(100,'\n');
+        	usleep(1);
             cout<<"You are now playing as a Rebel Soldier on Tatooine, your current mission is to meet up with Luke Skywalker"<<endl;
+        	usleep(250000);
             cout<<"You currently have no weapons\n"<<endl;
             Tatooine();
             break;
@@ -456,17 +477,18 @@ void randomcave(){
         case 2:
             if (blaster==1){
                 cout<<"You rolled a "<<chance<<" out of 100"<<endl;
+                system("read -p 'Press Enter to continue...' var");
                 if (chance>49){
-                    system("read -p 'Press Enter to continue...' var");
                     cout<<"You pull your blaster and take cover behind a nearby boulder"<<endl;
                     cout<<"A blaster shot hits your shoulder, wounding your arm"<<endl;
                     cout<<"You fire off a few shots, taking down three of the smugglers"<<endl;
                     cout<<"The remaining 2 smugglers flee"<<endl;
                 }
-                else {
+                else{
                     cout<<"You dive behind the nearest boulder"<<endl;
                     cout<<"You pull your blaster, only managing to take down one smuggler before the others shoot you down"<<endl;
-                    cout<<"YOU HAVE DIED\nGAME OVER"<<endl;
+                    cout<<"YOU HAVE DIED"<<endl;
+                    cout<<"GAME OVER"<<endl;
                     pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grenade = 0 WHERE player_ID = "+userstr);
                     pstmt->executeUpdate();
                     delete pstmt;
@@ -482,12 +504,57 @@ void randomcave(){
             }
             break;
         case 3:
-            
+            if (grenade==1){
+                cout<<"You rolled a "<<chance<<" out of 100"<<endl;
+                system("read -p 'Press Enter to continue...' var");
+            	if (chance>74){
+            		cout<<"Reacting fast, you press the detonation button on the grenade"<<endl;
+            		cout<<"You underhand toss it right into the center of the large group"<<endl;
+            		cout<<"Diving behind the closest boulder, you dodge a few panicked laser shots"<<endl;
+            		cout<<"With a deafening bang, the grenade explodes"<<endl;
+            		cout<<"Peeking out from behind the boulder, you see four smugglers dead, the other has fled"<<endl;
+            	}
+            	else{
+            		cout<<"You fumble for the grenade in your pack"<<endl;
+            		cout<<"Pulling it out, you just manage to arc your arm back before the smugglers fire"<<endl;
+            		cout<<"As you hit the ground, the light starts to fade"<<endl;
+                    cout<<"YOU HAVE DIED"<<endl;
+                    cout<<"GAME OVER"<<endl;
+                    pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grenade = 0 WHERE player_ID = "+userstr);
+                    pstmt->executeUpdate();
+                    delete pstmt;
+                    pstmt=con->prepareStatement("UPDATE player_info SET luke = 0, obiwan = 0, progress = 0 WHERE player_ID = "+userstr);
+                    pstmt->executeUpdate();
+                    delete pstmt;
+                    return;
+            	}
+            }
+            else{
+                cout<<"INVALID OPTION"<<endl;
+                goto here;
+            }
             break;
         case 4:
+        	if (grenade==1 && blaster==1){
+        		cout<<"With lightning speed, you arm the grenade and toss it into the group of smugglers"<<endl;
+        		cout<<"Before they even have a chance to react, you take cover behind the nearest boulder"<<endl;
+        		cout<<"You gun down those smugglers who were quick enough to even try to run"<<endl;
+        	}
+        	else{
+                cout<<"INVALID OPTION"<<endl;
+                goto here;
+        	}
             break;
         case 5:
+            pstmt=con->prepareStatement("UPDATE player_info SET progress = 3 WHERE player_ID = "+userstr);
+            pstmt->executeUpdate();
+            delete pstmt;
+            cout<<"Your progress has been saved, thanks for playing!"<<endl;
             break;
+        default:
+            cout<<"INVALID OPTION"<<endl;
+            goto here;
+        	break;
     }
     system("read -p 'Press Enter to continue...' var");
     cout<<"You search the bodies, finding Luke's lightsaber on the first smuggler's corpse"<<endl;
