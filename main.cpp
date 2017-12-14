@@ -320,6 +320,7 @@ void obiwan(){
             cout<<"Obi-Wan - What was the name of the Star Destroyer that Darth Vader commanded?"<<endl;
             cin>>guess;
             getline(cin, guess);
+            cout<<"You guessed "<<guess<<endl;
             if (guess=="Executor"||guess=="executor"||guess=="EXECUTOR"){
                 cout<<"Obi-Wan - Indeed. It was the most fearsome Star Destroyer I've ever come across"<<endl;
                 cout<<"Obi-Wan - Well, I suppose I owe you this\nHe hands you a small sphere\nGRENADE ACQUIRED"<<endl;
@@ -331,6 +332,7 @@ void obiwan(){
             pstmt=con->prepareStatement("UPDATE player_info SET obiwan = 1 WHERE player_ID = "+userstr);
             pstmt->executeUpdate();
             delete pstmt;
+            Tatooine();
             break;
         case 2:
             pstmt=con->prepareStatement("UPDATE player_info SET obiwan = 1 WHERE player_ID = "+userstr);
