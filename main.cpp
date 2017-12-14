@@ -19,6 +19,7 @@ g++ -o test -I/usr/include -I/usr/include/cppconn -Wl,-Bdynamic main.cpp -lmysql
 #include <unistd.h>
 #include <sstream>
 #include <cstdio>
+#include <limits>
 /*
   Include directly the different
   headers from cppconn/ and mysql_driver.h + mysql_util.h
@@ -155,6 +156,7 @@ void checkProgress(){
         here:;
         cout<<"Previous save file found.\n1. Resume from save\n2. Create new game"<<endl;
         cin.get(instr);
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         if (instr!='2' && instr!='1'){
             cout<<"INVALID OPTION"<<endl;
             goto here;
@@ -191,6 +193,7 @@ void start(){
     cout << "1. Play" <<endl;
     cout << "2. Exit" <<endl;
     cin.get(instr);
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     if (instr!='1' && instr!='2'){
         cout<<"INVALID OPTION"<<endl;
         goto here;
@@ -244,6 +247,7 @@ void Tatooine(){
     if (grenade==0)cout<<"3. Go to the worn-down home"<<endl;
     cout<<"4. Save and quit"<<endl;
     cin.get(instr);
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     if (isblank(instr)){
         cout<<"INVALID OPTION"<<endl;
         goto here;
@@ -331,6 +335,7 @@ void obiwan(){
     else cout<<"3. *LOCKED*\n";
     cout<<"4. Save and quit\n";
     cin.get(instr);
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     if (isblank(instr)){
         cout<<"INVALID OPTION"<<endl;
         goto here;
@@ -420,6 +425,7 @@ void randomcave(){
     else cout<<"4. *LOCKED*"<<endl;
     cout<<"5. Save and quit\n"<<endl;
     cin.get(instr);
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     if (isblank(instr)){
         cout<<"INVALID OPTION"<<endl;
         goto here;
