@@ -152,27 +152,24 @@ void checkProgress(){
     delete pstmt;
     delete res;
     if (x!=0){
-            cout<<"Previous save file found.\n1. Resume from save\n2. Create new game"<<endl;
-            getline(cin, instr);
-        if (sizeof(instr)==0 || sizeof(instr)>1){
+        here:;
+        cout<<"Previous save file found.\n1. Resume from save\n2. Create new game"<<endl;
+        getline(cin, instr);
+        if (instr!="2" && instr!="1"){
             cout<<"INVALID OPTION"<<endl;
             goto here;
-        }
-        else if (!isdigit(instr[0])){
-                    cout<<"INVALID OPTION"<<endl;
-                    goto here;
         }
         inss<<instr;
         inss>>input;
         inss.clear();
         if (input==2){
-            pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grappling_hook = 0 WHERE player_ID = "+userstr);
+            pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grenade = 0 WHERE player_ID = "+userstr);
+            pstmt->executeUpdate();
+            delete pstmt;
+            pstmt=con->prepareStatement("UPDATE player_info SET luke = 0, obiwan = 0, progress = 0 WHERE player_ID = "+userstr);
             pstmt->executeUpdate();
             delete pstmt;
             cout<<"Previous save wiped successfully\n"<<endl;
-        }
-        else if (input!=1){
-            //Put invalid loop here
         }
     }
     switch(x){
@@ -192,25 +189,14 @@ void checkProgress(){
 }
 
 void start(){
+    here:;
     cout <<"Welcome to Albuquerque" << endl;
     cout << "1. Play" <<endl;
     cout << "2. Exit" <<endl;
     getline(cin, instr);
-    if (sizeof(instr)==0 || sizeof(instr)>1){
+    if (instr!="1" && instr!="2"){
         cout<<"INVALID OPTION"<<endl;
         goto here;
-    }
-    else if (!isdigit(instr[0])){
-                cout<<"INVALID OPTION"<<endl;
-                goto here;
-    }
-    if (sizeof(instr)==0 || sizeof(instr)>1){
-        cout<<"INVALID OPTION"<<endl;
-        goto here;
-    }
-    else if (!isdigit(instr[0])){
-                cout<<"INVALID OPTION"<<endl;
-                goto here;
     }
     inss<<instr;
     inss>>input;
