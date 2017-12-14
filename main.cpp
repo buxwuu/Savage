@@ -120,12 +120,15 @@ int createUser(){
 			pstmt->executeUpdate();
 			delete pstmt;
             delete res;
+            cout<<"player_info"<<endl;
             pstmt=con->prepareStatement("INSERT INTO inventory (blaster, lightsaber, grenade) VALUES ('0', '0', '0')");
             pstmt->executeUpdate();
             delete pstmt;
             delete res;
+            cout<<"inventory"<<endl;
 			pstmt=con->prepareStatement("SELECT player_ID FROM player_info WHERE username='"+username+"'");
 			res=pstmt->executeQuery();
+            cout<<"res->first()"<<endl;
 			res->first();
 			cout<<"Welcome "<<username<<". You are logged in"<<endl;
 			return res->getInt("player_ID");
