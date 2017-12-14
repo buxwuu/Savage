@@ -142,7 +142,7 @@ int createUser(){
 }
 
 void checkProgress(){
-    cout<<"Checking for previous save..."<<endl;
+    cout<<"Checking for previous save..."<<userstr<<endl;
 	delete pstmt;
 	delete res;
     pstmt=con->prepareStatement("SELECT progress FROM player_info WHERE player_ID = "+userstr);
