@@ -48,6 +48,7 @@ string update;
 string update2;
 string userstr;
 string instr;
+stringstream inss;
 int input;
 int userid;
 sql::Driver *driver;
@@ -153,7 +154,8 @@ void checkProgress(){
     if (x!=0){
         cout<<"Previous save file found.\n1. Resume from save\n2. Create new game"<<endl;
         getline(cin, instr);
-        input=stoi(instr);
+        inss<<instr;
+        inss>>input;
         if (input==2){
             pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grappling_hook = 0 WHERE player_ID = "+userstr);
             pstmt->executeUpdate();
@@ -185,7 +187,8 @@ void start(){
     cout << "1. Play" <<endl;
     cout << "2. Exit" <<endl;
     getline(cin,instr);
-    input=stoi(instr);
+    inss<<instr;
+    inss>>input;
     switch (input){
         case 1:
 	    cout<<"Let the game begin"<<endl<<endl;
@@ -230,7 +233,8 @@ void Tatooine(){
     if (grenade==0)cout<<"3. Go to the worn-down home"<<endl;
     cout<<"4. Save and quit"<<endl;
     getline(cin,instr);
-    input=stoi(instr);
+    inss<<instr;
+    inss>>input;
     switch (input) {
         case 1:
             if (luke==1){
@@ -313,7 +317,8 @@ void obiwan(){
     else cout<<"3. *LOCKED*\n";
     cout<<"4. Save and quit\n";
     getline(cin,instr);
-    input=stoi(instr);
+    inss<<instr;
+    inss>>input;
     switch (input){
         case 1:
             cout<<"Obi-Wan - If you can answer this question correct, I'll give you what you need"<<endl;
@@ -395,7 +400,8 @@ void randomcave(){
     else cout<<"4. *LOCKED*"<<endl;
     cout<<"5. Save and quit\n"<<endl;
     getline(cin,instr);
-    input=stoi(instr);
+    inss<<instr;
+    inss>>input;
     switch (input){
         case 1:
             cout<<"You rolled a "<<chance<<" out of 100"<<endl;
