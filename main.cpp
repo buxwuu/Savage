@@ -151,7 +151,7 @@ void checkProgress(){
     delete pstmt;
     delete res;
     if (x!=0){
-        cout<<"Previous save file found.\n1. Resume from save\n2. Create new game\n"<<endl;
+        cout<<"Previous save file found.\n1. Resume from save\n2. Create new game"<<endl;
         cin >> input;
         if (input==2){
             pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grappling_hook = 0 WHERE player_ID = "+userstr);
@@ -221,6 +221,7 @@ void Tatooine(){
     delete res;
     delete pstmt;
     here:
+    fflush(stdin);
     cout<<"To the west, you see a dome-like building\nTo the east, you see a mountain region with a small cave entrance built in"<<endl;
     cout<<"To the north, you see a worn-down home structure\n"<<endl;
     if (luke==0)cout<<"1. Go to the dome-like building"<<endl;
