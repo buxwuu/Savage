@@ -152,8 +152,16 @@ void checkProgress(){
     delete pstmt;
     delete res;
     if (x!=0){
-        cout<<"Previous save file found.\n1. Resume from save\n2. Create new game"<<endl;
-        getline(cin, instr);
+            cout<<"Previous save file found.\n1. Resume from save\n2. Create new game"<<endl;
+            getline(cin, instr);
+        if (sizeof(instr)==0 || sizeof(instr)>1){
+            cout<<"INVALID OPTION"<<endl;
+            goto here;
+        }
+        else if (!isdigit(instr[0])){
+                    cout<<"INVALID OPTION"<<endl;
+                    goto here;
+        }
         inss<<instr;
         inss>>input;
         inss.clear();
@@ -187,7 +195,23 @@ void start(){
     cout <<"Welcome to Albuquerque" << endl;
     cout << "1. Play" <<endl;
     cout << "2. Exit" <<endl;
-    getline(cin,instr);
+    getline(cin, instr);
+    if (sizeof(instr)==0 || sizeof(instr)>1){
+        cout<<"INVALID OPTION"<<endl;
+        goto here;
+    }
+    else if (!isdigit(instr[0])){
+                cout<<"INVALID OPTION"<<endl;
+                goto here;
+    }
+    if (sizeof(instr)==0 || sizeof(instr)>1){
+        cout<<"INVALID OPTION"<<endl;
+        goto here;
+    }
+    else if (!isdigit(instr[0])){
+                cout<<"INVALID OPTION"<<endl;
+                goto here;
+    }
     inss<<instr;
     inss>>input;
     inss.clear();
@@ -234,7 +258,15 @@ void Tatooine(){
     cout<<"2. Go to the cave"<<endl;
     if (grenade==0)cout<<"3. Go to the worn-down home"<<endl;
     cout<<"4. Save and quit"<<endl;
-    getline(cin,instr);
+    getline(cin, instr);
+    if (sizeof(instr)==0 || sizeof(instr)>1){
+        cout<<"INVALID OPTION"<<endl;
+        goto here;
+    }
+    else if (!isdigit(instr[0])){
+                cout<<"INVALID OPTION"<<endl;
+                goto here;
+    }
     inss<<instr;
     inss>>input;
     inss.clear();
@@ -320,7 +352,23 @@ void obiwan(){
     if (x==1) cout<<"3. *Reach for blaster* I think I'll just take it from you, thanks very much\n";
     else cout<<"3. *LOCKED*\n";
     cout<<"4. Save and quit\n";
-    getline(cin,instr);
+    getline(cin, instr);
+    if (sizeof(instr)==0 || sizeof(instr)>1){
+        cout<<"INVALID OPTION"<<endl;
+        goto here;
+    }
+    else if (!isdigit(instr[0])){
+                cout<<"INVALID OPTION"<<endl;
+                goto here;
+    }
+    if (sizeof(instr)==0 || sizeof(instr)>1){
+        cout<<"INVALID OPTION"<<endl;
+        goto here;
+    }
+    else if (!isdigit(instr[0])){
+                cout<<"INVALID OPTION"<<endl;
+                goto here;
+    }
     inss<<instr;
     inss>>input;
     inss.clear();
@@ -407,7 +455,15 @@ void randomcave(){
     if (grenade==blaster==1) cout<<"4. Throw the grenade and pull your blaster (100% chance to succeed)"<<endl;
     else cout<<"4. *LOCKED*"<<endl;
     cout<<"5. Save and quit\n"<<endl;
-    getline(cin,instr);
+    getline(cin, instr);
+    if (sizeof(instr)==0 || sizeof(instr)>1){
+        cout<<"INVALID OPTION"<<endl;
+        goto here;
+    }
+    else if (!isdigit(instr[0])){
+                cout<<"INVALID OPTION"<<endl;
+                goto here;
+    }
     inss<<instr;
     inss>>input;
     inss.clear();
