@@ -245,13 +245,12 @@ void Tatooine(){
     if (grenade==0)cout<<"3. Go to the worn-down home"<<endl;
     cout<<"4. Save and quit"<<endl;
     getline(cin, instr);
-    cout<<"You chose "<<instr<<": "<<endl;
-    if (sizeof(&instr)==0 || sizeof(&instr)>1){
-        cout<<"INVALID OPTION: size: "<<sizeof(&instr)<<endl;
+    if (instr[1]!=NULL){
+        cout<<"INVALID OPTION"<<endl;
         goto here;
     }
     else if (!isdigit(instr[0])){
-        cout<<"INVALID OPTION, isn't digit"<<endl;
+        cout<<"INVALID OPTION"<<endl;
         goto here;
     }
     inss<<instr;
