@@ -59,15 +59,6 @@ int main(void)
 	con->setSchema("techtest");
         while (true){
             userid = login();
-            string tester;
-            tester = ("SELECT progress FROM player_info WHERE player_ID = "+userid);
-            cout<<"TESTER: "<<tester<<endl;
-            pstmt=con->prepareStatement("SELECT progress FROM player_info WHERE player_ID = "+userid);
-            res=pstmt->executeQuery();
-            res->first();
-            int progress;
-            progress = res->getInt("progress");
-            cout<<"HELP: "<<progress<<endl;
             checkProgress();
         }
 }
@@ -149,7 +140,7 @@ int createUser(){
 void checkProgress(){
 	delete pstmt;
 	delete res;
-    pstmt=con->prepareStatement("SELECT progress FROM player_info WHERE player_ID = "+userid);
+    pstmt=con->prepareStatement("SELECT progress FROM player_info WHERE player_ID = "+itoa(userid));
     res=pstmt->executeQuery();
     int x;
     res->first();
@@ -160,7 +151,7 @@ void checkProgress(){
         cout<<"Previous save file found.\n1. Resume from save\n2. Create new game\n"<<endl;
         cin >> input;
         if (input==2){
-            pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grappling_hook = 0 WHERE player_ID = "+userid);
+            pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grappling_hook = 0 WHERE player_ID = "+itoa(userid));
             pstmt->executeUpdate();
             delete pstmt;
             cout<<"Previous save wiped successfully\n"<<endl;
@@ -214,13 +205,13 @@ void Tatooine(){
     system("read -p 'Press Enter to continue...' var");
     bool grenade;
     bool luke;
-    pstmt = con->prepareStatement("SELECT luke FROM player_info WHERE player_ID = "+userid);
+    pstmt = con->prepareStatement("SELECT luke FROM player_info WHERE player_ID = "+itoa(userid));
     res=pstmt->executeQuery();
     res->first();
     luke = res->getBoolean("luke");
     delete res;
     delete pstmt;
-    pstmt = con->prepareStatement("SELECT grenade FROM inventory WHERE player_ID = "+userid);
+    pstmt = con->prepareStatement("SELECT grenade FROM inventory WHERE player_ID = "+itoa(userid));
     res=pstmt->executeQuery();
     res->first();
     grenade = res->getBoolean("grenade");
@@ -253,7 +244,7 @@ To the north, you see a worn-down home structure\n"<<endl;
             obiwan();
             break;
         case 4:
-            pstmt=con->prepareStatement("UPDATE player_info SET progress = 1 WHERE player_ID = "+userid);
+            pstmt=con->prepareStatement("UPDATE player_info SET progress = 1 WHERE player_ID = "+itoa(userid));
             pstmt->executeUpdate();
             cout<<"Your progress has been saved, thanks for playing!"<<endl;
             return;
@@ -270,7 +261,7 @@ void Lukeshome(){
     cout << "I have lost my lightsaber and I need you to recover it for me" << endl;
     cout<<"I was jumped by some smugglers while bulls-eyeing womp-rats in my T-16. I think they are set up in that cave by the mountain"<<endl;
     cout<<"Here, take my spare blaster, you might need it!"<<endl;
-    pstmt=con->prepareStatement("UPDATE inventory SET blaster = 1 WHERE player_ID = "+userid);
+    pstmt=con->prepareStatement("UPDATE inventory SET blaster = 1 WHERE player_ID = "+itoa(userid));
     pstmt->executeUpdate();
     delete pstmt;
     cout<<"BLASTER ACQUIRED\n"<<endl;
@@ -278,7 +269,7 @@ void Lukeshome(){
     cout<<"If you haven't already, you may want to visit Obi-Wan at his home, he might be able to supply you with other gear as well"<<endl;
     cout<<"Either way, may the Force be with you"<<endl;
     cout<<"You leave the dwelling\n"<<endl;
-    pstmt=con->prepareStatement("UPDATE player_info SET luke = 1 WHERE player_ID = "+userid);
+    pstmt=con->prepareStatement("UPDATE player_info SET luke = 1 WHERE player_ID = "+itoa(userid));
     pstmt->executeUpdate();
     delete pstmt;
     Tatooine();
@@ -286,14 +277,14 @@ void Lukeshome(){
 
 void obiwan(){
     system("read -p 'Press Enter to continue...' var");
-    pstmt=con->prepareStatement("SELECT blaster FROM inventory WHERE player_ID = "+userid);
+    pstmt=con->prepareStatement("SELECT blaster FROM inventory WHERE player_ID = "+itoa(userid));
     res=pstmt->executeQuery();
     res->first();
     int x;
     x = res->getBoolean("blaster");
     delete res;
     delete pstmt;
-    pstmt=con->prepareStatement("SELECT obiwan FROM player_info WHERE player_ID = "+userid);
+    pstmt=con->prepareStatement("SELECT obiwan FROM player_info WHERE player_ID = "+itoa(userid));
     res=pstmt->executeQuery();
     res->first();
     bool obi;
@@ -327,12 +318,12 @@ void obiwan(){
                 cout<<"Obi-Wan - Indeed. It was the most fearsome Star Destroyer I've ever come across"<<endl;
                 cout<<"Obi-Wan - Well, I suppose I owe you this\nHe hands you a small sphere\nGRENADE ACQUIRED"<<endl;
             }
-            pstmt=con->prepareStatement("UPDATE player_info SET luke = 1 WHERE player_ID = "+userid);
+            pstmt=con->prepareStatement("UPDATE player_info SET luke = 1 WHERE player_ID = "+itoa(userid));
             pstmt->executeUpdate();
             delete pstmt;
             break;
         case 2:
-            pstmt=con->prepareStatement("UPDATE player_info SET luke = 1 WHERE player_ID = "+userid);
+            pstmt=con->prepareStatement("UPDATE player_info SET luke = 1 WHERE player_ID = "+itoa(userid));
             pstmt->executeUpdate();
             delete pstmt;
             cout<<"Obi-Wan - May the Force be with you, return if you need\nYou exit the dwelling\n"<<endl;
@@ -345,16 +336,16 @@ void obiwan(){
             }
             cout<<"Obi-Wan - Very well\nHe hands over a small sphere\nGRENADE ACQUIRED"<<endl;
             cout<<"Obi-Wan - Now leave my home, and don't come back"<<endl;
-            pstmt=con->prepareStatement("UPDATE inventory SET grenade = 1 WHERE player_ID = "+userid);
+            pstmt=con->prepareStatement("UPDATE inventory SET grenade = 1 WHERE player_ID = "+itoa(userid));
             pstmt->executeUpdate();
             delete pstmt;
-            pstmt=con->prepareStatement("UPDATE player_info SET luke = 1 WHERE player_ID = "+userid);
+            pstmt=con->prepareStatement("UPDATE player_info SET luke = 1 WHERE player_ID = "+itoa(userid));
             pstmt->executeUpdate();
             delete pstmt;
             cout<<"You leave the old man's dwelling\n"<<endl;
             Tatooine();
         case 4:
-            pstmt=con->prepareStatement("UPDATE player_info SET progress = 2 WHERE player_ID = "+userid);
+            pstmt=con->prepareStatement("UPDATE player_info SET progress = 2 WHERE player_ID = "+itoa(userid));
             pstmt->executeUpdate();
             delete pstmt;
             cout<<"Your progress has been saved, thanks for playing!"<<endl;
@@ -373,7 +364,7 @@ void randomcave(){
     cout<<"You enter the cave, and spot 5 smugglers gathered around a campfire"<<endl;
     cout<<"Unfortunately, they seem to have spotted you too!"<<endl;
     cout<<"Smuggler - You've messed up, boy! *draws blaster*"<<endl;
-    pstmt=con->prepareStatement("SELECT * FROM inventory WHERE player_ID = "+userid);
+    pstmt=con->prepareStatement("SELECT * FROM inventory WHERE player_ID = "+itoa(userid));
     res=pstmt->executeQuery();
     res->first();
     int blaster;
@@ -408,10 +399,10 @@ void randomcave(){
                 cout<<"You charge the smugglers, yelling wildly with your fists raised"<<endl;
                 cout<<"The one who spoke shoots you down, laughing with his friends as your vision goes dark"<<endl;
                 cout<<"YOU HAVE DIED\nGAME OVER"<<endl;
-                pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grenade = 0 WHERE player_ID = "+userid);
+                pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grenade = 0 WHERE player_ID = "+itoa(userid));
                 pstmt->executeUpdate();
                 delete pstmt;
-                pstmt=con->prepareStatement("UPDATE player_info SET luke = 0, obiwan = 0, progress = 0 WHERE player_ID = "+userid);
+                pstmt=con->prepareStatement("UPDATE player_info SET luke = 0, obiwan = 0, progress = 0 WHERE player_ID = "+itoa(userid));
                 pstmt->executeUpdate();
                 delete pstmt;
                 return;
@@ -430,10 +421,10 @@ void randomcave(){
                     cout<<"You dive behind the nearest boulder"<<endl;
                     cout<<"You pull your blaster, only managing to take down one smuggler before the others shoot you down"<<endl;
                     cout<<"YOU HAVE DIED\nGAME OVER"<<endl;
-                    pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grenade = 0 WHERE player_ID = "+userid);
+                    pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grenade = 0 WHERE player_ID = "+itoa(userid));
                     pstmt->executeUpdate();
                     delete pstmt;
-                    pstmt=con->prepareStatement("UPDATE player_info SET luke = 0, obiwan = 0, progress = 0 WHERE player_ID = "+userid);
+                    pstmt=con->prepareStatement("UPDATE player_info SET luke = 0, obiwan = 0, progress = 0 WHERE player_ID = "+itoa(userid));
                     pstmt->executeUpdate();
                     delete pstmt;
                     return;
@@ -455,17 +446,17 @@ void randomcave(){
     system("read -p 'Press Enter to continue...' var");
     cout<<"You search the bodies, finding Luke's lightsaber on the first smuggler's corpse"<<endl;
     cout<<"LIGHTSABER ACQUIRED"<<endl;
-    pstmt=con->prepareStatement("UPDATE inventory SET lightsaber = 1 WHERE player_ID = "+userid);
+    pstmt=con->prepareStatement("UPDATE inventory SET lightsaber = 1 WHERE player_ID = "+itoa(userid));
     pstmt->executeUpdate();
     delete pstmt;
     system("read -p 'Press Enter to continue...' var");
     cout<<"YOU WIN"<<endl;
     cout<<"CONGRATULATIONS"<<endl;
     cout<<"GAME OVER"<<endl;
-    pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grenade = 0 WHERE player_ID = "+userid);
+    pstmt=con->prepareStatement("UPDATE inventory SET blaster = 0, lightsaber = 0, grenade = 0 WHERE player_ID = "+itoa(userid));
     pstmt->executeUpdate();
     delete pstmt;
-    pstmt=con->prepareStatement("UPDATE player_info SET luke = 0, obiwan = 0, progress = 0 WHERE player_ID = "+userid);
+    pstmt=con->prepareStatement("UPDATE player_info SET luke = 0, obiwan = 0, progress = 0 WHERE player_ID = "+itoa(userid));
     pstmt->executeUpdate();
     delete pstmt;
     return;
