@@ -120,7 +120,7 @@ int createUser(){
 			pstmt->executeUpdate();
 			delete pstmt;
             delete res;
-            pstmt=con->prepareStatement("INSERT INTO inventory (blaster, lightsaber, grenade) VALUES ('0, 0, 0')");
+            pstmt=con->prepareStatement("INSERT INTO inventory (blaster, lightsaber, grenade) VALUES ('0', '0', '0')");
             pstmt->executeUpdate();
             delete pstmt;
             delete res;
