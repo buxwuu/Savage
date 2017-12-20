@@ -8,7 +8,6 @@ Sam Berger (MugBergerFries)
 Hunter Haller (huha3374)
 Max Hayne (mhayne)
 Kevin Kirk (buxwuu)
-Karan Vohra (KaranVohra64)
 
 Description of the project:
 We want to create a text-based adventure game that allows you to log in when you want to play and remembers game progress when you login with your unique username. “It’s easy to dismiss text adventures as the relics of a bygone age," says Bob Bates, a famous American computer games designer who helped create interactive fiction games through a famous company he founded called Challenge, Inc. Many people love how simple, easy, and fun these interactive fiction text-based games are to play.  They bring back nostalgic memories and remind many people of their childhood. However, Bates claims that there's more to it than just the nostalgia. He says, “I hope that will be the future. I'd like to make more games like this. I love the genre. It's fun to make. It’s fun to play. No, I don’t think of it as just a nostalgia thing.” Bates is proof that there are still people out there that want to keep text-based adventure games alive. With our project, we want to appeal to these gaming consumers that have an interest in this simple, yet incredibly fun genre of gaming.
